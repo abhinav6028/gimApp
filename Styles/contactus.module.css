@@ -1,0 +1,12 @@
+.input_lable {
+    background-color: #DDDBCB; 
+    /* background-color: #dddbcb84; */
+    width: 100%;
+    height: 100%;
+    border-color: transparent;
+    border-bottom: 2px solid grey;
+}
+
+.input_lable:focus {
+    outline: none;
+}

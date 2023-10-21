@@ -1,0 +1,8 @@
+.scrolling {
+    background: transparent;
+    overflow: auto;
+}
+
+.scrolling::-webkit-scrollbar {
+    display: none;
+}

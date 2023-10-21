@@ -1,0 +1,17 @@
+.messageFieled {
+    background-color: transparent;
+    width: 100%;
+    border: 0.5px solid white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.messageFieled:focus {
+    outline: none;
+}
+
+.messageFieled::-webkit-input-placeholder {
+    letter-spacing: 1.5px;
+    margin-top: 10;
+    font-family: Oxygen;
+}
+
