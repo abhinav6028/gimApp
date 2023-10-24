@@ -20,7 +20,7 @@ export default async function page() {
 
     const token = Cookies.get('auth_token')
 
-    console.log("token", token);
+    // console.log("token", token);
 
     // const headers = {
     //     'Authorization': token, // Replace 'your_token' with your actual token
@@ -49,16 +49,16 @@ export default async function page() {
     };
 
 
-    const handlePaymentCheckout = async () => {
-        try {
-            const response = await axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers });
-            console.log(response.data); // Handle the response data here
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+    // const handlePaymentCheckout = async () => {
+    //     try {
+    //         const response = await axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers });
+    //         console.log(response.data); // Handle the response data here
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
 
-    
+
     // const handleCheckout = () => {
 
     //     axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
@@ -71,6 +71,31 @@ export default async function page() {
 
     // }
 
+    // const hey = () => {
+
+    //     alert('/////////////////')
+
+    // }
+
+    function handleCheckout() {
+        // alert('Hello!');
+
+        axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
+
+            // console.log("ressssssssssssssssss", res.data.url)
+
+            // console.log("ressssssssssssssssss", res.data.success)
+
+            // if (res.data.success == true) {
+            //     router.push(res.data.url)
+            // }
+
+            router.push(res.data.url)
+        )
+
+
+
+    }
 
 
     return (
@@ -241,7 +266,8 @@ export default async function page() {
 
                                 <Button
                                     width="100%" borderRadius={10}
-                                    onClick={() => handlePaymentCheckout()}
+                                    //  onClick={onClick={sayHello}}
+                                    onClick={handleCheckout}
                                 >SUBSCRIBE NOW</Button>
 
                             </Grid>
@@ -249,6 +275,7 @@ export default async function page() {
                         </Grid>
 
                     </Grid>
+
 
                 </Grid>
 
