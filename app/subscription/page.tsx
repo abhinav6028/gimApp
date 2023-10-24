@@ -10,12 +10,22 @@ import { Grid, Box, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
+import axios from 'axios'
+import Cookies from 'js-cookie'
 
 
 export default async function page() {
 
     const router = useRouter()
 
+    const token = Cookies.get('auth_token')
+
+    console.log("token", token);
+
+    // const headers = {
+    //     'Authorization': token, // Replace 'your_token' with your actual token
+    //     'Content-Type': 'application/json',
+    // };
 
     const items = [
         {
@@ -33,6 +43,34 @@ export default async function page() {
 
     ]
 
+    const headers = {
+        'Authorization': `Bearer ${token}`, // Replace 'your_token' with your actual token
+        'Content-Type': 'application/json',
+    };
+
+
+    const handlePaymentCheckout = async () => {
+        try {
+            const response = await axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers });
+            console.log(response.data); // Handle the response data here
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    
+    // const handleCheckout = () => {
+
+    //     axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
+
+    //         console.log("????????????????????", res)
+
+    //     )
+
+    //     alert('?????stripe hit')
+
+    // }
+
 
 
     return (
@@ -44,6 +82,7 @@ export default async function page() {
 
 
             <Grid container sx={{ mt: 2 }}>
+
                 <Box
                     component='img'
                     src='Assets/Icons/Multiply.png'
@@ -55,6 +94,7 @@ export default async function page() {
                         cursor: 'pointer'
                     }}
                 />
+
             </Grid>
 
 
@@ -66,15 +106,6 @@ export default async function page() {
                 bgcolor: 'transparent',
                 height: { xs: '70vh', sm: '', md: '', lg: '' }
             }}>
-
-                {/* <Grid container md={2} sx={{
-                    bgcolor: '',
-                    height: '100%', justifyContent: 'center',
-                    alignItems: 'end',
-                    display: { sm: 'none', md: 'flex' }
-                }}>
-                    <Dumbel />
-                </Grid> */}
 
                 <Grid container xs={10} sm={8} md={5} sx={{
                     // bgcolor: 'white',
@@ -163,7 +194,6 @@ export default async function page() {
                                 )
                             }
 
-
                         </Grid>
 
 
@@ -172,7 +202,6 @@ export default async function page() {
                         <Grid container sx={{
                             justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent',
                             mt: { sm: 6.5, md: 2.5, lg: 6 }
-
                         }}>
 
                             <Grid container xs={11} sm={11} md={12} sx={{
@@ -197,7 +226,7 @@ export default async function page() {
 
                         <Grid container sx={{
                             justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent',
-                            mt: { sm: 4, md: 2.5, lg: 3 }
+                            mt: { sm: 4, md: 2.5, lg: 1 }
 
                         }}>
 
@@ -205,46 +234,23 @@ export default async function page() {
                                 // width: '100%',
                                 bgcolor: '#FCCB06',
                                 borderRadius: 1,
-                                py: 1,
+                                // py: 1,
                                 alignItems: 'center',
-                                mt: { xs: 2, sm: '', md: '', lg: 1 }
+                                // mt: { xs: 2, sm: '', md: '', lg: 1 }
                             }}>
 
                                 <Button
                                     width="100%" borderRadius={10}
-                                    onClick={() => alert('/////////////////////')}
+                                    onClick={() => handlePaymentCheckout()}
                                 >SUBSCRIBE NOW</Button>
 
                             </Grid>
 
                         </Grid>
 
-                        {/* <Box sx={{
-                            width: '100%',
-                            my: 6, bgcolor: 'transparent'
-                        }}>
-
-                            <Button width="100%" borderRadius={2}>SUBSCRIBE NOW</Button>
-
-                        </Box> */}
-
-
-
-
                     </Grid>
 
-
-
                 </Grid>
-
-                {/* <Grid container md={2} sx={{
-                    bgcolor: '',
-                    height: '100%', justifyContent: 'center',
-                    alignItems: 'center',
-                    display: { sm: 'none', md: 'flex' }
-                }}>
-                    <Dumbel />
-                </Grid> */}
 
             </Grid>
 

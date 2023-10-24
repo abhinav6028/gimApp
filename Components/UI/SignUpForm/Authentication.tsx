@@ -2,13 +2,13 @@ import { Box, Grid, Typography } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { H4 } from '../Typography/Typography';
-import Styles from '../../../Styles/inputfield.module.css'
 import Button from '../Button/Button';
 import CustomeTextField from '../CustomeTextField/CustomeTextField';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { BASE_URL } from '@/utils/urls';
-import { log } from 'console';
+import Cookies from 'js-cookie';
+
 
 export default function Authentication(props: any) {
 
@@ -20,10 +20,9 @@ export default function Authentication(props: any) {
 
     const [buttonDisplay2, setButtonDisplay2] = React.useState(false)
 
-    console.log("clientData???????????", clientData.result.mobile);
+    const token = Cookies.get('auth_token')
 
-    console.log("clientData--email", clientData.result.email);
-
+    console.log("token", token);
 
 
     const formik = useFormik({
@@ -37,6 +36,7 @@ export default function Authentication(props: any) {
         onSubmit: (values) => {
 
             axios.post(`${BASE_URL}otp/varify`,
+
                 {
                     type: "email",
                     to: clientData.result.email,
@@ -45,9 +45,12 @@ export default function Authentication(props: any) {
 
             ).then((res) => {
 
-                console.log("EMAIL OTP RESULT-------------------->", res);
+                if (res.data.success) {
 
+                    Cookies.set('auth_token', clientData.accessTocken)
+                    router.back('/')
 
+                }
             })
 
         },
@@ -55,16 +58,9 @@ export default function Authentication(props: any) {
     })
 
 
-    const formItems = [
-        {
-            fieldName: "Enter mobile OTP",
-            id: 'otp',
-            type: 'number',
-            inputType: "text"
-        }
-    ]
 
-    const formItems2 = [
+
+    const formItems = [
         {
             fieldName: "Enter Email OTP",
             id: 'otp',
@@ -125,56 +121,16 @@ export default function Authentication(props: any) {
                     }}>We’ve sent a One Time Password (OTP) to the mobile
                         number above. Please enter it to complete verification </Typography>
 
-
-
-                    <Grid container sx={{
-                        mt: {
-                            xs: 2,
-                            lg: 3
-                        }
-                    }}>
-
-                        <form action="" style={{ width: '100%' }}>
-
-                            <Grid container sx={{ bgcolor: '' }}>
-
-                                {
-                                    formItems.map((data, index) =>
-
-                                        <CustomeTextField data={data} formik={formik} fieldWidth='100%' buttonDisplay={buttonDisplay} setButtonDisplay={setButtonDisplay} lg={10} />
-
-                                    )
-                                }
-
-                                <Box sx={{
-                                    width: { xs: '100%', lg: '80%' },
-                                    my: 1.8,
-                                    // display: buttonDisplay ? 'flex' : 'none'
-                                }}>
-
-                                    <Button width='100%' borderRadius='10px'>VERIFY</Button>
-
-                                </Box>
-
-                            </Grid>
-
-                        </form>
-
-                    </Grid>
-
-
-
-
                     <Grid container sx={{ bgcolor: 'red' }}>
 
-                        <form action="" style={{ width: '100%' }}>
+                        <form action="" style={{ width: '100%' }} onSubmit={formik.handleSubmit} >
 
                             <Grid container >
 
                                 {
-                                    formItems2.map((data, index) =>
+                                    formItems.map((data, index) =>
 
-                                        <CustomeTextField data={data} formik={formik}  buttonDisplay2={buttonDisplay2} setButtonDisplay2={setButtonDisplay2} lg={10} />
+                                        <CustomeTextField data={data} formik={formik} buttonDisplay2={buttonDisplay2} setButtonDisplay2={setButtonDisplay2} lg={10} />
 
                                     )
                                 }
@@ -194,23 +150,6 @@ export default function Authentication(props: any) {
                         </form>
 
                     </Grid>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                     {/* 
@@ -248,3 +187,39 @@ export default function Authentication(props: any) {
         </Grid >
     )
 }
+
+
+{/* <Grid container sx={{
+                        mt: {
+                            xs: 2,
+                            lg: 3
+                        }
+                    }}>
+
+                        <form action="" style={{ width: '100%' }}>
+
+                            <Grid container sx={{ bgcolor: '' }}>
+
+                                {
+                                    formItems.map((data, index) =>
+
+                                        <CustomeTextField data={data} formik={formik} fieldWidth='100%' buttonDisplay={buttonDisplay} setButtonDisplay={setButtonDisplay} lg={10} />
+
+                                    )
+                                }
+
+                                <Box sx={{
+                                    width: { xs: '100%', lg: '80%' },
+                                    my: 1.8,
+                                    // display: buttonDisplay ? 'flex' : 'none'
+                                }}>
+
+                                    <Button width='100%' borderRadius='10px'>VERIFY</Button>
+
+                                </Box>
+
+                            </Grid>
+
+                        </form>
+
+                    </Grid> */}

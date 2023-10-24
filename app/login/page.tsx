@@ -30,10 +30,12 @@ export default function page() {
                     Password: values.Password,
                 }
             ).then((res) => {
-                
-                console.log("?????????????????????/", res.data.success);
 
-                Cookies.set('auth_token', res.data.accessTocken) 
+                console.log('resssssssssssssssssssss', res.data.success);
+
+                if (res.data.success) {
+                    Cookies.set('auth_token', res.data.accessTocken)
+                }
 
             })
 

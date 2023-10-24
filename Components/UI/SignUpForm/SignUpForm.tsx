@@ -58,16 +58,15 @@ export default function SignUpForm(props: any) {
                 }
             ).then((res) => {
 
-                console.log("????????????????????????????/////", res);
+                console.log("????????????????????????????/////", res.data.result.success);
 
 
-                cookies.set('auth_token', res.data.accessTocken)
+                // -cookies.set('auth_token', res.data.accessTocken)
+                console.log("result", res);
 
 
 
                 if (res.data.success) {
-
-                    console.log('meshine successsssssssssssss');
 
                     setCheck(!check)
 
