@@ -33,6 +33,7 @@ export default function SignUpForm(props: any) {
             state: "",
             gender: "",
             mobile: "",
+            whatsApp: "",
             email: "",
             password: ""
 
@@ -52,6 +53,7 @@ export default function SignUpForm(props: any) {
                     state: values.state,
                     gender: gender,
                     mobile: values.mobile,
+                    whatsApp:values.whatsApp,
                     email: values.email,
                     password: values.password,
 
@@ -133,7 +135,7 @@ export default function SignUpForm(props: any) {
         },
         {
             fieldName: "Watsap number ",
-            id: 'mobile',
+            id: 'whatsApp',
             type: 'number',
             inputType: "text"
         },
