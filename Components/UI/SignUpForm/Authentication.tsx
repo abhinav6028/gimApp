@@ -22,7 +22,7 @@ export default function Authentication(props: any) {
 
     const token = Cookies.get('auth_token')
 
-    console.log("token", token);
+    // console.log("token", token);
 
 
     const formik = useFormik({

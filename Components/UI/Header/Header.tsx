@@ -1,14 +1,18 @@
 "use client"
-
 import React from 'react';
 import { Grid, Box } from '@mui/material'
 import Button from '../Button/Button';
 import { H5 } from '../Typography/Typography';
 //import { BG_COLOUR } from '@/utils/colours';
 import { useRouter } from 'next/navigation';
-
+import Cookies from 'js-cookie';
 
 export default function Header() {
+
+    const token = Cookies.get('auth_token')
+
+    console.log("token>>>>>>>>>>>>>>>>", token);
+
 
     const router = useRouter()
 
@@ -54,9 +58,23 @@ export default function Header() {
                 )
             }
 
-            <Button onClick={() => router.push('/signup')} mr={3}>Sign Up</Button>
+            <Box sx={{ display: token ? 'none' : 'flex' }}>
 
-            <Button mr={5} onClick={() => router.push('/login')}>Log In</Button>
+                <Button onClick={() => router.push('/signup')} mr={3}>Sign Up</Button>
+
+                <Button mr={5} onClick={() => router.push('/login')}>Log In</Button>
+
+            </Box>
+
+            <Box sx={{ display: token ? 'flex' : 'none' }}>
+
+                <Button onClick={() => router.push('/subscription')} mr={3}>Subscribe</Button>
+
+                <Button mr={5} onClick={() => Cookies.remove('auth_token') }>Log Out</Button>
+
+            </Box>
+
+
 
         </Grid >
     )

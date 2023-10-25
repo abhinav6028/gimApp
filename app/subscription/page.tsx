@@ -83,6 +83,7 @@ export default async function page() {
         axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
 
             router.push(res.data.url)
+            
     
         )
 

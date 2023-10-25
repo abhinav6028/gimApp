@@ -62,7 +62,7 @@ export default function Banner() {
                 <Box sx={{
                     position: 'absolute',
                     right: { md: 60, lg: 150 },
-                    bottom: { md: "40%", lg: 250 }, bgcolor: 'transparent'
+                    bottom: { md: "40%", lg:"40%" }, bgcolor: 'transparent'
                 }}>
 
                     <Dumbel />
