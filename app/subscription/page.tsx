@@ -82,15 +82,8 @@ export default async function page() {
 
         axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
 
-            // console.log("ressssssssssssssssss", res.data.url)
-
-            // console.log("ressssssssssssssssss", res.data.success)
-
-            // if (res.data.success == true) {
-            //     router.push(res.data.url)
-            // }
-
             router.push(res.data.url)
+    
         )
 
 

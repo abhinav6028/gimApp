@@ -35,6 +35,8 @@ export default function page() {
 
                 if (res.data.success) {
                     Cookies.set('auth_token', res.data.accessTocken)
+
+                    router.back()
                 }
 
             })

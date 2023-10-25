@@ -31,7 +31,10 @@ export default function VideoSection() {
 
     const { fetchedData: fetchedData } = useQueryFetch('category')
 
-    // console.log("fetchedData", fetchedData);
+
+
+
+    console.log("fetchedData", fetchedData);
 
     const router = useRouter()
 
@@ -102,7 +105,7 @@ export default function VideoSection() {
                                         width: { xs: 270, sm: 230, md: 270, lg: 300 },
                                         height: { xs: 340, sm: 320, md: 340, lg: 370 },
                                         borderRadius: 5,
-                                        backgroundImage: `url('Assets/Home/intermediet.png')`,
+                                        backgroundImage: `url(${data.image})`,
                                         cursor: 'pointer',
                                         '&:hover': {
                                             transform: 'scale(1.06)',
