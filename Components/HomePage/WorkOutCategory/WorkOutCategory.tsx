@@ -4,6 +4,7 @@ import { H4, H5 } from '@/Components/UI/Typography/Typography';
 import { PRIMARY_COLOUR, SECONDARY_COLOUR } from '@/utils/colours';
 import Button from '@/Components/UI/Button/Button';
 import ImageComponent from '@/Components/UI/ImageComponent/ImageComponent';
+import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
 
 export default function WorkOutCategory() {
 
@@ -25,6 +26,8 @@ export default function WorkOutCategory() {
             title: 'blue'
         },
     ]
+
+    const data = useQueryFetchByHeaders('auth/profile').fetchedData
 
     return (
 
@@ -90,7 +93,7 @@ export default function WorkOutCategory() {
 
                         <Box sx={{ mt: { md: 2 } }}>
 
-                            <Button letterSpacing={1.2} fontFamily="Oxygen">Subscribe</Button>
+                            <Button letterSpacing={1.2} display={data?.IsActive && 'none'} fontFamily="Oxygen">Subscribe</Button>
 
                         </Box>
 

@@ -20,7 +20,7 @@ export default function Button(props: any) {
         display: 'flex', justifyContent: 'center', alignItems: 'center', ml: ml,
         mr: { xs: mr - 3, lg: mr },
         cursor: 'pointer', mt: mt, pt: pt, my: my,
-        border: `2px solid ${PRIMARY_COLOUR}`,
+        border: `2px solid ${PRIMARY_COLOUR}`, display: display,
         '&:hover': {
           background: hoverColour,
           border: `4px solid ${PRIMARY_COLOUR}`,
@@ -30,7 +30,7 @@ export default function Button(props: any) {
       }}>
 
       <button type='submit' onClick={onClick} style={{
-        width: '100%', height: '100%', backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer', display: display
+        width: '100%', height: '100%', backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer',
       }}>
 
         <H5 fontWeight='bold' fontFamily={fontFamily} letterSpacing={letterSpacing} >{props.children}</H5>

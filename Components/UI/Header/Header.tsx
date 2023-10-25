@@ -6,6 +6,7 @@ import { H5 } from '../Typography/Typography';
 //import { BG_COLOUR } from '@/utils/colours';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
 
 export default function Header() {
 
@@ -13,7 +14,12 @@ export default function Header() {
 
     const router = useRouter()
 
-    
+    const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
+
+    console.log("fetchedData>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", fetchedData?.IsActive);
+
+
+
 
     const headrDaata = [
         {
@@ -67,9 +73,9 @@ export default function Header() {
 
             <Box sx={{ display: token ? 'flex' : 'none' }}>
 
-                <Button onClick={() => router.push('/subscription')} display="" mr={3}>Subscribe</Button>
+                <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} mr={3}>Subscribe</Button>
 
-                <Button mr={5} onClick={() => Cookies.remove('auth_token') }>Log Out</Button>
+                <Button mr={5} onClick={() => Cookies.remove('auth_token')}>Log Out</Button>
 
             </Box>
 

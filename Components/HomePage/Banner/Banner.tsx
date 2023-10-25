@@ -7,11 +7,14 @@ import Button from '@/Components/UI/Button/Button';
 import { H1, H2, H5 } from '@/Components/UI/Typography/Typography';
 import Dumbel from '@/Components/UI/Dumbel/Dumbel';
 import { useRouter } from 'next/navigation';
+import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
 
 
 export default function Banner() {
 
     const router = useRouter()
+
+    const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
 
     const items = [
         {
@@ -62,7 +65,7 @@ export default function Banner() {
                 <Box sx={{
                     position: 'absolute',
                     right: { md: 60, lg: 150 },
-                    bottom: { md: "40%", lg:"40%" }, bgcolor: 'transparent'
+                    bottom: { md: "40%", lg: "40%" }, bgcolor: 'transparent'
                 }}>
 
                     <Dumbel />
@@ -115,7 +118,7 @@ export default function Banner() {
                     }
 
                     <Button
-
+                        display={fetchedData?.IsActive && 'none'}
                         onClick={() => router.push('/subscription')}
                         letterSpacing={1.2} fontFamily="Oxygen"
                         mt='auto' >Subscribe</Button>

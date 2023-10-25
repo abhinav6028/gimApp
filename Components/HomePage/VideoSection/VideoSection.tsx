@@ -4,7 +4,7 @@ import { Box, Grid } from '@mui/material'
 import { H5, H4 } from '@/Components/UI/Typography/Typography';
 import { PRIMARY_COLOUR } from '@/utils/colours';
 import Button from '@/Components/UI/Button/Button';
-import { useQueryFetch } from '@/hooks/useFetchData';
+import { useQueryFetch, useQueryFetchByHeaders } from '@/hooks/useFetchData';
 import { useRouter } from 'next/navigation';
 
 
@@ -31,10 +31,14 @@ export default function VideoSection() {
 
     const { fetchedData: fetchedData } = useQueryFetch('category')
 
+    // const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
+
+    const data = useQueryFetchByHeaders('auth/profile').fetchedData
+
+    // console.log("onr???????????????????????", one);
 
 
-
-    console.log("fetchedData", fetchedData);
+    // console.log("fetchedData", fetchedData);
 
     const router = useRouter()
 
@@ -163,7 +167,9 @@ export default function VideoSection() {
             </Grid>
 
             <Grid container sx={{ mt: 5, justifyContent: 'center', alignItems: 'center' }}>
-                <Button letterSpacing={1.2} fontFamily="Oxygen" onClick={() => router.push('/subscription')}>Subscribe</Button>
+                <Button letterSpacing={1.2} fontFamily="Oxygen"
+                    display={data?.IsActive && 'none'}
+                    onClick={() => router.push('/subscription')}>Subscribe</Button>
             </Grid>
 
         </Grid >

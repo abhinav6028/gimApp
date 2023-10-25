@@ -1,6 +1,8 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query'
 import { BASE_URL } from '@/utils/urls';
+import { url } from 'inspector';
+import Cookies from 'js-cookie';
 
 export const useQueryFetch = (url: any) => {
 
@@ -11,9 +13,29 @@ export const useQueryFetch = (url: any) => {
         fetch(BASE_URL + url).then(res =>
             res.json()
         )
-        
+
     )
 
     return { fetchedData: fetchedData?.result, refetch }
 
+}
+
+export const useQueryFetchByHeaders = (url: any) => {
+
+    const token = Cookies.get('auth_token')
+
+    const { data: fetchedData, refetch } = useQuery([url], () =>
+
+        fetch(BASE_URL + url, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
+            }
+        }).then(res =>
+            res.json()
+        )
+
+    )
+
+    return { fetchedData: fetchedData?.result, refetch }
 }
