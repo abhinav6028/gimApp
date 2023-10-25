@@ -11,10 +11,9 @@ export default function Header() {
 
     const token = Cookies.get('auth_token')
 
-    console.log("token>>>>>>>>>>>>>>>>", token);
-
-
     const router = useRouter()
+
+    
 
     const headrDaata = [
         {
@@ -68,7 +67,7 @@ export default function Header() {
 
             <Box sx={{ display: token ? 'flex' : 'none' }}>
 
-                <Button onClick={() => router.push('/subscription')} mr={3}>Subscribe</Button>
+                <Button onClick={() => router.push('/subscription')} display="" mr={3}>Subscribe</Button>
 
                 <Button mr={5} onClick={() => Cookies.remove('auth_token') }>Log Out</Button>
 

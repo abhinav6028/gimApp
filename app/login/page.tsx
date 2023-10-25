@@ -106,13 +106,13 @@ export default function page() {
                                             )
                                         }
 
-                                        <Grid container xs={12} sm={12} md={7} lg={12} sx={{
-                                            justifyContent: 'center', alignContent: 'center',
-                                            mt: 2.5
-                                        }}>
-                                            <Button width='100%'>Log In</Button>
+                                            <Grid container xs={12} sm={12} md={7} lg={12} sx={{
+                                                justifyContent: 'center', alignContent: 'center',
+                                                mt: 2.5
+                                            }}>
+                                                <Button width='100%'>Log In</Button>
 
-                                        </Grid>
+                                            </Grid>
 
                                         <Grid xs={12} sm={12} md={7} lg={12} container sx={{
                                             bgcolor: 'black',

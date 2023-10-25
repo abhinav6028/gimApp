@@ -6,7 +6,7 @@ import { H5 } from '../Typography/Typography'
 
 export default function Button(props: any) {
 
-  const { ml, mr, mt, pt, my, width, onClick, borderRadius, bgcolor, hoverColour, fontFamily, letterSpacing, submit } = props
+  const { ml, mr, mt, pt, my, width, onClick, borderRadius, bgcolor, hoverColour, fontFamily, letterSpacing, submit, display } = props
 
   return (
 
@@ -30,7 +30,7 @@ export default function Button(props: any) {
       }}>
 
       <button type='submit' onClick={onClick} style={{
-        width: '100%', height: '100%', backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer'
+        width: '100%', height: '100%', backgroundColor: 'transparent', border: 'none', outline: 'none', cursor: 'pointer', display: display
       }}>
 
         <H5 fontWeight='bold' fontFamily={fontFamily} letterSpacing={letterSpacing} >{props.children}</H5>
