@@ -16,7 +16,7 @@ export default function Header() {
 
     const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
 
-    console.log("fetchedData>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", fetchedData?.IsActive);
+    // console.log("fetchedData>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", fetchedData?.IsActive);
 
 
 
@@ -65,9 +65,9 @@ export default function Header() {
 
             <Box sx={{ display: token ? 'none' : 'flex' }}>
 
-                <Button onClick={() => router.push('/signup')} mr={3}>Sign Up</Button>
+                <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
 
-                <Button mr={5} onClick={() => router.push('/login')}>Log In</Button>
+                <Button mr={5} onClick={() => router.push('/login')} btnName='login'>Log In</Button>
 
             </Box>
 

@@ -53,7 +53,7 @@ export default function SignUpForm(props: any) {
                     state: values.state,
                     gender: gender,
                     mobile: values.mobile,
-                    whatsApp:values.whatsApp,
+                    whatsApp: values.whatsApp,
                     email: values.email,
                     password: values.password,
 
@@ -250,7 +250,7 @@ export default function SignUpForm(props: any) {
 
                                 <Grid container lg={11} bgcolor='' sx={{ justifyContent: 'center' }}>
 
-                                    <Button width='90%' >SIGN UP</Button>
+                                    <Button width='90%' btnType='submit' >SIGN UP</Button>
 
                                 </Grid>
 

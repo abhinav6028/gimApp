@@ -6,29 +6,32 @@ export default function CustomeDropDown(props: any) {
 
     // const [selectedValue, setSelectedValue] = React.useState('');
 
-    const { gender, setGender } = props
+    const genders = ['Male', 'Female', 'Others']
+
+    const { gender, setGender, name, options, lg, md, xs, bgcolor } = props
 
     const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setGender(event.target.value);
+        setGender ? setGender(event.target.value) : null
     };
 
 
     // /console.log("selectedValue", selectedValue);
 
     return (
-        <Grid container md={6} lg={6} bgcolor='' sx={{
+        <Grid container xs={xs ? xs : null} md={md ? md : 6} lg={lg ? lg : 6} bgcolor='' sx={{
 
             mt: {
                 xs: 1.5, lg: 2,
                 bgcolor: '',
                 mx: 3
-            }
+            },
+            mr: gender ? 0 : 5
         }} >
             <Typography sx={{
                 fontWeight: 'bold',
                 width: '80%',
                 bgcolor: ''
-            }}>Gender</Typography>
+            }}>{name}</Typography>
 
             <Box sx={{
                 width: { xs: '100%', lg: '80%' },
@@ -38,10 +41,21 @@ export default function CustomeDropDown(props: any) {
                 <select
                     onChange={handleChange}
                     className={Styles.field}
+                    style={{ backgroundColor: bgcolor, cursor: 'pointer' }}
                 >
-                    <option value="Male">Male</option>
+                    {setGender ?
+                        genders.map((item, index) => (
+                            <option value={item} key={index}>{item}</option>
+
+                        ))
+                        :
+                        options.map((item: any, index: any) => (
+                            <option value={item} key={index}>{item}</option>
+                        ))
+                    }
+                    {/* <option value="Male">Male</option>
                     <option value="Female">Female</option>
-                    <option value="Others">Others</option>
+                    <option value="Others">Others</option> */}
 
                 </select>
             </Box>

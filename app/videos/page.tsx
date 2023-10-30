@@ -2,32 +2,47 @@
 
 import Header from '@/Components/UI/Header/Header'
 import { Box, Grid, InputAdornment, OutlinedInput, TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import Styles from '../../Styles/search.module.css'
 import { BG_COLOUR } from '@/utils/colours'
 import { H4, H5 } from '@/Components/UI/Typography/Typography'
 import Button from '@/Components/UI/Button/Button'
 import ImageComponent from '@/Components/UI/ImageComponent/ImageComponent'
 import MobileHeader from '@/Components/UI/Header/MobileHeader';
+import CustomeDropDown from '@/Components/UI/CustomeDropDown/CustomeDropDown'
+import { useQueryFetch, useQueryFetchByHeaders, useQueryFetchById } from '@/hooks/useFetchData'
 // import { Styles } from '../../Styles/scrolling.module.css'
 
 export default function page() {
+    const [selectedButton, setSelectedBtn] = useState(0)
+    const { fetchedData: fetchByCategory } = useQueryFetchByHeaders(`video?languageId=${1}&categoryId=${3}`)
 
+    console.log(fetchByCategory, '222222222')
     const buttons = [
         {
-            btnName: 'Pre-Beginner'
+            btnName: 'Pre-Beginner',
+            id: 0
         },
         {
-            btnName: 'Beginner'
+            btnName: 'Beginner', id: 1
         },
         {
-            btnName: 'Intermediate'
+            btnName: 'Intermediate', id: 2
         },
         {
-            btnName: 'Expert'
+            btnName: 'Expert', id: 3
         }
     ]
 
+    const finalData = useQueryFetch('category').fetchedData
+
+    // console.log("finalData", finalData);
+
+    const btnClick = (index: any, id: any) => {
+        setSelectedBtn(index)
+        // const videosByCategory = fetchByCategory('video', id).fetchedData
+        // console.log(id, '2222222')
+    }
     return (
         <Grid container sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
 
@@ -55,13 +70,20 @@ export default function page() {
                 </Box>
 
             </Grid>
-
+            <Grid sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
+                <CustomeDropDown options={['Malayalam', 'English', 'Arabic']} lg='1' md='1' xs='2' bgcolor='transparent' />
+            </Grid>
             <Grid container xs={11} lg={11} bgcolor="" sx={{ my: 4, justifyContent: 'space-around' }}>
 
                 {
-                    buttons.map((data: any, index: any) =>
+                    finalData?.map((data: any, index: any) => {
+                        return (
 
-                        <Button key={index}>{data.btnName}</Button>
+                            <Box onClick={() => btnClick(index, data.id)} >
+                                <Button key={index} bgcolor={index == selectedButton ? 'white' : ''}>{data.name}</Button>
+                            </Box>
+                        )
+                    }
                     )
                 }
 
