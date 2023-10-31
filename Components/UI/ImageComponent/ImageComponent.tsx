@@ -1,7 +1,7 @@
 import { Grid, Box } from '@mui/material'
 import React from 'react'
 
-export default function ImageComponent(src: any) {
+export default function ImageComponent() {
     return (
         <Grid container alignItems='center' xs={10} md={12} sx={{
             justifyContent: { xs: 'center', md: 'center', lg: 'center' },

@@ -22,28 +22,28 @@ export const useQueryFetch = (url: any) => {
 
 
 export const useQueryFetchById = (url: any) => {
-    // try {
+    try {
 
-    const token = Cookies.get('auth_token')
+        const token = Cookies.get('auth_token')
 
-    const { data: fetchedData, refetch } = useQuery([url], () =>
+        const { data: fetchedData, refetch } = useQuery([url], () =>
 
-        fetch(BASE_URL + url, {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token
-            }
-        }).then(res =>
-            res.json()
+            fetch(BASE_URL + url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + token
+                }
+            }).then(res =>
+                res.json()
+            )
+
+
         )
 
-
-    )
-
-    return { fetchedData: fetchedData?.result, refetch }
-    // } catch (error) {
-    //     console.log(error)
-    // }
+        return { fetchedData: fetchedData?.result, refetch }
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 

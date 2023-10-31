@@ -22,6 +22,7 @@ export default function page() {
     const [langId, setLangId] = useState(1)
     const history = createBrowserHistory();
     const router = useRouter()
+    const [showVideo, setShowVideo] = useState(false)
 
     useEffect(() => {
         const filterParams = history.location.search.split('?')
@@ -35,7 +36,7 @@ export default function page() {
     }, []);
     const { fetchedData: fetchByCategory } = useQueryFetchById(`video?languageId=${langId}&categoryId=${categoryId}`)
 
-    console.log(fetchByCategory, '33333333333333')
+    console.log(fetchByCategory, '33333333333333', showVideo)
 
     // const buttons = [
     //     {
@@ -67,6 +68,10 @@ export default function page() {
         router.push(`?languageId=${lang}&categoryId=${categoryId}`)
 
     }
+
+    const handleImageClick = () => {
+        setShowVideo(!showVideo);
+    };
     return (
         <Grid container sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
 
@@ -105,7 +110,6 @@ export default function page() {
                             <Box onClick={() => selectCategory(index, data.id)} >
                                 <Button key={index} bgcolor={data.id == categoryId ? 'white' : ''}>{data.name}</Button>
                             </Box>
-
                         )
                     }
                     )
@@ -121,9 +125,18 @@ export default function page() {
 
                         <Grid container lg={11} bgcolor='' sx={{ my: { xs: 1, lg: 2 } }}>
 
-                            <Grid container lg={6} sx={{ justifyContent: 'center', alignItems: 'center' }}>
-                                {/* <ImageComponent src={data.video} /> */}
-                                <VideoPreview src={data.video} />
+                            <Grid
+                                container
+                                lg={6}
+                                sx={{ justifyContent: 'center', alignItems: 'center' }}
+                                onClick={handleImageClick}
+                            >
+                                {/* {data?.video?.map((item: any, indx: any) => ( */}
+                                {showVideo ?
+                                    <VideoPreview fileName={data.video} /> :
+                                    <ImageComponent />}
+
+                                {/* ))} */}
                             </Grid>
 
                             <Grid container lg={6} bgcolor='' sx={{
@@ -191,6 +204,6 @@ export default function page() {
 
 
 
-        </Grid>
+        </Grid >
     )
 }
