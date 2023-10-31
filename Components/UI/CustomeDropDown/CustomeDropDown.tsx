@@ -4,18 +4,16 @@ import Styles from '../../../Styles/inputfield.module.css'
 
 export default function CustomeDropDown(props: any) {
 
-    // const [selectedValue, setSelectedValue] = React.useState('');
 
     const genders = ['Male', 'Female', 'Others']
-
-    const { gender, setGender, name, options, lg, md, xs, bgcolor } = props
+    const { gender, setGender, name, options, lg, md, xs, bgcolor, setSelectedLang, langId } = props
 
     const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-        setGender ? setGender(event.target.value) : null
+        setGender ? setGender(event.target.value) :
+            setSelectedLang ? setSelectedLang(event.target.value) : null
     };
 
 
-    // /console.log("selectedValue", selectedValue);
 
     return (
         <Grid container xs={xs ? xs : null} md={md ? md : 6} lg={lg ? lg : 6} bgcolor='' sx={{
@@ -49,8 +47,8 @@ export default function CustomeDropDown(props: any) {
 
                         ))
                         :
-                        options.map((item: any, index: any) => (
-                            <option value={item} key={index}>{item}</option>
+                        options?.map((item: any, index: any) => (
+                            <option selected={langId ? langId == item.id ? item.name : item.name : null} value={item.id} key={index}>{item.name}</option>
                         ))
                     }
                     {/* <option value="Male">Male</option>
