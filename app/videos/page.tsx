@@ -2,7 +2,7 @@
 
 import Header from '@/Components/UI/Header/Header'
 import { Box, Grid, InputAdornment, OutlinedInput, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from '../../Styles/search.module.css'
 import { BG_COLOUR } from '@/utils/colours'
 import { H4, H5 } from '@/Components/UI/Typography/Typography'
@@ -12,36 +12,60 @@ import MobileHeader from '@/Components/UI/Header/MobileHeader';
 import CustomeDropDown from '@/Components/UI/CustomeDropDown/CustomeDropDown'
 import { useQueryFetch, useQueryFetchByHeaders, useQueryFetchById } from '@/hooks/useFetchData'
 // import { Styles } from '../../Styles/scrolling.module.css'
+import qs from "qs";
+import { createBrowserHistory } from "history";
+import { useRouter } from 'next/navigation'
+import VideoPreview from '@/Components/UI/videoPreview/videoPreview'
 
 export default function page() {
-    const [selectedButton, setSelectedBtn] = useState(0)
-    const { fetchedData: fetchByCategory } = useQueryFetchByHeaders(`video?languageId=${1}&categoryId=${3}`)
+    const [categoryId, setCategory] = useState(3)
+    const [langId, setLangId] = useState(1)
+    const history = createBrowserHistory();
+    const router = useRouter()
 
-    console.log(fetchByCategory, '222222222')
-    const buttons = [
-        {
-            btnName: 'Pre-Beginner',
-            id: 0
-        },
-        {
-            btnName: 'Beginner', id: 1
-        },
-        {
-            btnName: 'Intermediate', id: 2
-        },
-        {
-            btnName: 'Expert', id: 3
+    useEffect(() => {
+        const filterParams = history.location.search.split('?')
+        const filtersFromParams = qs.parse(filterParams[1]);
+        if (filtersFromParams.categoryId) {
+            setCategory(Number(filtersFromParams.categoryId));
         }
-    ]
+        if (filtersFromParams.languageId) {
+            setLangId(Number(filtersFromParams.languageId));
+        }
+    }, []);
+    const { fetchedData: fetchByCategory } = useQueryFetchById(`video?languageId=${langId}&categoryId=${categoryId}`)
 
-    const finalData = useQueryFetch('category').fetchedData
+    console.log(fetchByCategory, '33333333333333')
 
-    // console.log("finalData", finalData);
+    // const buttons = [
+    //     {
+    //         btnName: 'Pre-Beginner',
+    //         id: 0
+    //     },
+    //     {
+    //         btnName: 'Beginner', id: 1
+    //     },
+    //     {
+    //         btnName: 'Intermediate', id: 2
+    //     },
+    //     {
+    //         btnName: 'Expert', id: 3
+    //     }
+    // ]
 
-    const btnClick = (index: any, id: any) => {
-        setSelectedBtn(index)
-        // const videosByCategory = fetchByCategory('video', id).fetchedData
-        // console.log(id, '2222222')
+    const categories = useQueryFetch('category').fetchedData
+    const languages = useQueryFetch('languages').fetchedData
+
+    const selectCategory = (index: any, id: any) => {
+        setCategory(id)
+        // setSelectedBtn(index)
+        router.push(`?languageId=${langId}&categoryId=${id}`)
+    }
+
+    const selectLang = (lang: any) => {
+        setLangId(lang)
+        router.push(`?languageId=${lang}&categoryId=${categoryId}`)
+
     }
     return (
         <Grid container sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
@@ -71,17 +95,17 @@ export default function page() {
 
             </Grid>
             <Grid sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
-                <CustomeDropDown options={['Malayalam', 'English', 'Arabic']} lg='1' md='1' xs='2' bgcolor='transparent' />
+                <CustomeDropDown options={languages} langId={langId} setSelectedLang={selectLang} lg='1' md='1' xs='2' bgcolor='transparent' />
             </Grid>
             <Grid container xs={11} lg={11} bgcolor="" sx={{ my: 4, justifyContent: 'space-around' }}>
 
                 {
-                    finalData?.map((data: any, index: any) => {
+                    categories?.map((data: any, index: any) => {
                         return (
-
-                            <Box onClick={() => btnClick(index, data.id)} >
-                                <Button key={index} bgcolor={index == selectedButton ? 'white' : ''}>{data.name}</Button>
+                            <Box onClick={() => selectCategory(index, data.id)} >
+                                <Button key={index} bgcolor={data.id == categoryId ? 'white' : ''}>{data.name}</Button>
                             </Box>
+
                         )
                     }
                     )
@@ -91,14 +115,15 @@ export default function page() {
 
 
             {
-                [1, 2, 3].map((data, index) =>
+                fetchByCategory?.length != 0 ? fetchByCategory?.map((data: any, index: any) => (
 
                     <Grid container justifyContent='center' alignItems='center'>
 
                         <Grid container lg={11} bgcolor='' sx={{ my: { xs: 1, lg: 2 } }}>
 
                             <Grid container lg={6} sx={{ justifyContent: 'center', alignItems: 'center' }}>
-                                <ImageComponent />
+                                {/* <ImageComponent src={data.video} /> */}
+                                <VideoPreview src={data.video} />
                             </Grid>
 
                             <Grid container lg={6} bgcolor='' sx={{
@@ -110,7 +135,7 @@ export default function page() {
                                     my: { xs: 3, lg: 3 },
                                     width: '100%',
                                 }}>
-                                    <H4 fontWeight="bold" textAlign='start'>WORKOUT (Day 1)</H4>
+                                    <H4 fontWeight="bold" textAlign='start'>{data.title} {data.dayNo}</H4>
                                 </Box>
 
 
@@ -129,13 +154,14 @@ export default function page() {
 
                                         <H5 textAlign='start' width='100%'>
 
-                                            Lorem Ipsum is simply dummy text of the printing and
+                                            {/* Lorem Ipsum is simply dummy text of the printing and
                                             typesetting ustry. Lorem Ipsum has been the industry s
                                             standard dummy text ever since the 1500s, when an unknown
                                             printer took a galley of type and scrambled it to make a type
                                             specimen book. It has survived not only five centuries, but
                                             also the leap into electronic typesetting, remaining essentially
-                                            unchanged
+                                            unchanged */}
+                                            {data.description}
 
                                         </H5>
 
@@ -154,9 +180,13 @@ export default function page() {
                             height: '0.8px',
                             my: 3, mt: 3
                         }} />
-                    </Grid>
+                    </Grid >
 
-                )
+                ))
+                    :
+
+                    <h1>No items to show</h1>
+
             }
 
 
