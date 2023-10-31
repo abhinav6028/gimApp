@@ -102,14 +102,17 @@ export default function page() {
             <Grid sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
                 <CustomeDropDown options={languages} langId={langId} setSelectedLang={selectLang} lg='1' md='1' xs='2' bgcolor='transparent' />
             </Grid>
-            <Grid container xs={11} lg={11} bgcolor="" sx={{ my: 4, justifyContent: 'space-around' }}>
+            <Grid container xs={6} lg={11} bgcolor="" sx={{ my: 4, display: 'flex', justifyContent: 'space-around', spacing: 5 }}>
 
                 {
                     categories?.map((data: any, index: any) => {
                         return (
-                            <Box onClick={() => selectCategory(index, data.id)} >
-                                <Button key={index} bgcolor={data.id == categoryId ? 'white' : ''}>{data.name}</Button>
-                            </Box>
+                            <Grid key={index} container bgcolor='' xs={6} md={3} sx={{ justifyContent: "center" }}>
+
+                                <Box onClick={() => selectCategory(index, data.id)} >
+                                    <Button key={index} bgcolor={data.id == categoryId ? 'white' : ''}>{data.name}</Button>
+                                </Box>
+                            </Grid>
                         )
                     }
                     )

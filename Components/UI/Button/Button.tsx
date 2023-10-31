@@ -19,7 +19,7 @@ export default function Button(props: any) {
         display: 'flex', justifyContent: 'center', alignItems: 'center', ml: ml,
         mr: { xs: mr - 3, lg: mr },
         cursor: 'pointer', mt: mt, pt: pt, my: my,
-        border: `2px solid ${PRIMARY_COLOUR}`, display: display,
+        border: `2px solid ${PRIMARY_COLOUR}`,
         '&:hover': {
           background: hoverColour,
           border: `4px solid ${PRIMARY_COLOUR}`,
