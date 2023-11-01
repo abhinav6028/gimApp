@@ -67,7 +67,7 @@ export default function Header() {
 
                 <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
 
-                <Button mr={5} onClick={() => router.push('/login')} btnName='login'>Log In</Button>
+                <Button mr={5} onClick={() => { router.push('/login') }} btnName='login'>Log In</Button>
 
             </Box>
 
@@ -75,7 +75,7 @@ export default function Header() {
 
                 <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} mr={3}>Subscribe</Button>
 
-                <Button mr={5} onClick={() => Cookies.remove('auth_token')}>Log Out</Button>
+                <Button mr={5} onClick={() => { Cookies.remove('auth_token'), window.location.reload() }}>Log Out</Button>
 
             </Box>
 
