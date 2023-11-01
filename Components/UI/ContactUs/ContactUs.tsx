@@ -3,9 +3,14 @@ import { Box, Grid, Typography } from '@mui/material'
 import Button from '../Button/Button';
 import { H4, H5 } from '../Typography/Typography';
 import Styles from '../../../Styles/contactus.module.css'
+import { FormEvent, useState } from "react";
 
 
 export default function ContactUs() {
+
+    const [name, setName] = React.useState('')
+    const [email, setEmail] = React.useState('')
+    const [message, setMessage] = React.useState('')
 
     const Icons = [
         {
@@ -21,7 +26,38 @@ export default function ContactUs() {
             path: 'Assets/Icons/Facebook.png'
         },
     ]
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log('++++++++++++++++++++++++++++++++++++++')
+        alert('form submitted')
+        let form = {
+            name,
+            email,
+            message
+        }
 
+        const rawResponse = await fetch('/app/api/submit', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        }).then((res) => {
+            console.log(res, '((((((((((((((((((')
+        }).catch((err) => {
+            console.log(err)
+        })
+        const content = await rawResponse.json();
+
+        // print to screen
+        alert(content.data.tableRange)
+
+        // Reset the form fields
+        setMessage('')
+        setName('')
+        setEmail('')
+    }
     return (
 
         <Grid container sx={{
@@ -91,73 +127,76 @@ export default function ContactUs() {
                         </Typography>
 
                     </Grid>
-
-                    <Grid container sx={{
-                        justifyContent: { xs: 'center', sm: 'center', md: 'start', lg: 'start' }
-                    }}>
-                        <Grid container xs={10} sm={9} md={10} lg={9} sx={{
+                    <form action="post" style={{ width: '100%' }} onSubmit={handleSubmit}>
+                        <Grid container sx={{
                             justifyContent: { xs: 'center', sm: 'center', md: 'start', lg: 'start' }
                         }}>
-
-                            <Box sx={{
-                                width: '90%',
-                                height: { xs: 35, sm: 60, lg: 50 },
-                                my: { xs: 1.3, sm: 2, md: 1 },
+                            <Grid container xs={10} sm={9} md={10} lg={9} sx={{
+                                justifyContent: { xs: 'center', sm: 'center', md: 'start', lg: 'start' }
                             }}>
 
-                                <input type="text"
-                                    name="email"
-                                    placeholder='EMAIL'
-                                    className={Styles.input_lable}
-                                />
+                                <Box sx={{
+                                    width: '90%',
+                                    height: { xs: 35, sm: 60, lg: 50 },
+                                    my: { xs: 1.3, sm: 2, md: 1 },
+                                }}>
 
-                            </Box>
+                                    <input type="text"
+                                        name="name"
+                                        placeholder='NAME'
+                                        className={Styles.input_lable}
+                                        onChange={(e) => setName(e.target.value)}
+                                    />
 
-                            <Box sx={{
-                                width: '90%',
-                                height: { xs: 35, sm: 60, lg: 50 },
-                                my: { xs: 1.3, sm: 2, md: 1 },
-                            }}>
+                                </Box>
 
-                                <input type="text"
-                                    name="email"
-                                    placeholder='EMAIL'
-                                    className={Styles.input_lable}
-                                />
+                                <Box sx={{
+                                    width: '90%',
+                                    height: { xs: 35, sm: 60, lg: 50 },
+                                    my: { xs: 1.3, sm: 2, md: 1 },
+                                }}>
 
-                            </Box>
+                                    <input type="text"
+                                        name="email"
+                                        placeholder='EMAIL'
+                                        className={Styles.input_lable}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                    />
 
-                            <Box sx={{
-                                width: '90%',
-                                height: { xs: 100, sm: 110, lg: 130 },
-                                my: { xs: 1.8, sm: 2, md: 0, lg: 1 }
-                            }}>
+                                </Box>
 
-                                <textarea
+                                <Box sx={{
+                                    width: '90%',
+                                    height: { xs: 100, sm: 110, lg: 130 },
+                                    my: { xs: 1.8, sm: 2, md: 0, lg: 1 }
+                                }}>
 
-                                    id="w3review"
-                                    name="w3review"
-                                    rows={4}
-                                    cols={50}
-                                    className={Styles.input_lable}
-                                    placeholder='MESSAGE'
+                                    <textarea
 
-                                />
+                                        id="w3review"
+                                        name="message"
+                                        rows={4}
+                                        cols={50}
+                                        className={Styles.input_lable}
+                                        placeholder='MESSAGE'
+                                        onChange={(e) => setMessage(e.target.value)}
 
-                            </Box>
+                                    />
+
+                                </Box>
 
 
-                            <Box sx={{ width: '90%', my: 2 }}>
+                                <Box sx={{ width: '90%', my: 2 }}>
 
-                                <Button ml="auto" bgcolor='#FFFFFF'
-                                    hoverColour="transparent" hoverBorderRadius='7'
-                                > SEND </Button>
+                                    <Button ml="auto" bgcolor='#FFFFFF'
+                                        hoverColour="transparent" hoverBorderRadius='7' btnType='submit'
+                                    > SEND </Button>
 
-                            </Box>
+                                </Box>
 
+                            </Grid>
                         </Grid>
-                    </Grid>
-
+                    </form>
                     <Grid container sx={{
                         justifyContent: { xs: 'center', sm: 'center', md: 'start', lg: 'start' }
                     }}>
