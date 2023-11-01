@@ -31,12 +31,12 @@ export default function Button(props: any) {
       }}>
 
       <button type={btnType ? 'submit' : 'button'} onClick={onClick} style={{
-        width: '100%', height: '100%', backgroundColor: bgcolor ? bgcolor : 'transparent', border: 'none', outline: 'none', cursor: 'pointer',
+        width: '100%', height: '100%', backgroundColor: bgcolor ? bgcolor : 'transparent', border: 'none', outline: 'none', cursor: 'pointer', fontSize: '15px', fontWeight: 'bold',
 
       }}>
 
-        <H5 fontWeight='bold' fontFamily={fontFamily} letterSpacing={letterSpacing} >{props.children}</H5>
-
+        {/* <H5 fontWeight='bold' fontFamily={fontFamily} letterSpacing={letterSpacing} >{props.children}</H5> */}
+        {props.children.length < 21 ? props.children : props.children.slice(0, 15) + '...'}
       </button>
 
 

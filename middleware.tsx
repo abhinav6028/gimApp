@@ -50,7 +50,7 @@ export const config = {
 
     matcher: [
         // "/",
-        "/video/:path*",
+        "/videos/:path*",
         "/subscription/:path*"
     ]
 

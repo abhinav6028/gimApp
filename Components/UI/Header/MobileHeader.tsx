@@ -8,12 +8,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { BG_COLOUR } from '@/utils/colours'
 import Button from '../Button/Button'
+import Cookies from 'js-cookie';
+import { useQueryFetchByHeaders } from '@/hooks/useFetchData'
 
 export default function MobileHeader() {
 
   const [menu, setMenu] = React.useState(false)
-
+  const token = Cookies.get('auth_token')
   const router = useRouter();
+  const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
 
   const navbarItems = [
     {
@@ -111,9 +114,25 @@ export default function MobileHeader() {
           )}
 
 
-        <Button onClick={() => router.push('/signup')} ml={1.5} >Sign Up</Button>
+        {/* <Button onClick={() => router.push('/signup')} ml={1.5} >Sign Up</Button>
 
-        <Button onClick={() => router.push('/login')} mt={1.5} ml={1.5}>Log In</Button>
+        <Button onClick={() => router.push('/login')} mt={1.5} ml={1.5}>Log In</Button> */}
+
+        <Box sx={{ display: token ? 'none' : 'block', justifyContent: 'space-between', padding: '15px', paddingBottom: '25px', }}>
+
+          <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
+
+          <Button mr={5} onClick={() => router.push('/login')} btnName='login'>Log In</Button>
+
+        </Box>
+
+        <Box sx={{ display: token ? 'block' : 'none', padding: '15px', paddingBottom: '25px', justifyContent: 'space-between' }}>
+
+          <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} >Subscribe</Button>
+
+          <Button mt={1} onClick={() => { Cookies.remove('auth_token'), window.location.reload() }}>Log Out</Button>
+
+        </Box>
       </Box>
 
     </Grid >

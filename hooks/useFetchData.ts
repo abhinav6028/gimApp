@@ -33,8 +33,10 @@ export const useQueryFetchById = (url: any) => {
                     'Content-Type': 'application/json',
                     Authorization: 'Bearer ' + token
                 }
-            }).then(res =>
-                res.json()
+            }).then(res => {
+                console.log(res, '0000000000000')
+                return res.json()
+            }
             )
 
 

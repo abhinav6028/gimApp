@@ -1,12 +1,14 @@
 import { Grid, Typography, Box } from '@mui/material';
 import React from 'react';
 import Styles from '../../../Styles/inputfield.module.css'
+import { useSearchParams } from 'next/navigation'
 
 export default function CustomeDropDown(props: any) {
 
-
+    const searchParams = useSearchParams()
+    const langId = searchParams.get('languageId')
     const genders = ['Male', 'Female', 'Others']
-    const { gender, setGender, name, options, lg, md, xs, bgcolor, setSelectedLang, langId } = props
+    const { gender, setGender, name, options, lg, md, xs, bgcolor, setSelectedLang, } = props
 
     const handleChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setGender ? setGender(event.target.value) :
@@ -39,7 +41,7 @@ export default function CustomeDropDown(props: any) {
                 <select
                     onChange={handleChange}
                     className={Styles.field}
-                    style={{ backgroundColor: bgcolor, cursor: 'pointer' }}
+                    style={{ backgroundColor: bgcolor, cursor: 'pointer', fontSize: 15, padding: 10, color: '#656565', fontWeight: 'bold' }}
                 >
                     {setGender ?
                         genders.map((item, index) => (
@@ -48,12 +50,10 @@ export default function CustomeDropDown(props: any) {
                         ))
                         :
                         options?.map((item: any, index: any) => (
-                            <option selected={langId ? langId == item.id ? item.name : item.name : null} value={item.id} key={index}>{item.name}</option>
+                            <option selected={langId ? langId == item.id : false} value={item.id} key={index}>{item.name}</option>
                         ))
                     }
-                    {/* <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option> */}
+
 
                 </select>
             </Box>

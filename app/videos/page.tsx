@@ -18,11 +18,20 @@ import { useRouter } from 'next/navigation'
 import VideoPreview from '@/Components/UI/videoPreview/videoPreview'
 
 export default function page() {
+    const [seeMore, setSeeMore] = useState(null)
     const [categoryId, setCategory] = useState(3)
     const [langId, setLangId] = useState(1)
     const history = createBrowserHistory();
     const router = useRouter()
     const [showVideo, setShowVideo] = useState(false)
+
+    const dummyDesc = `Lorem Ipsum is simply dummy text of the printing and
+typesetting ustry. Lorem Ipsum has been the industry s
+standard dummy text ever since the 1500s, when an unknown
+printer took a galley of type and scrambled it to make a type
+specimen book. It has survived not only five centuries, but
+also the leap into electronic typesetting, remaining essentially
+unchanged`
 
     useEffect(() => {
         const filterParams = history.location.search.split('?')
@@ -34,25 +43,10 @@ export default function page() {
             setLangId(Number(filtersFromParams.languageId));
         }
     }, []);
-    const { fetchedData: fetchByCategory } = useQueryFetchById(`video?languageId=${langId}&categoryId=${categoryId}`)
+    const { fetchedData: fetchByCategory } = useQueryFetchByHeaders(`video?languageId=${langId}&categoryId=${categoryId}`)
 
     console.log(fetchByCategory, '33333333333333', showVideo)
 
-    // const buttons = [
-    //     {
-    //         btnName: 'Pre-Beginner',
-    //         id: 0
-    //     },
-    //     {
-    //         btnName: 'Beginner', id: 1
-    //     },
-    //     {
-    //         btnName: 'Intermediate', id: 2
-    //     },
-    //     {
-    //         btnName: 'Expert', id: 3
-    //     }
-    // ]
 
     const categories = useQueryFetch('category').fetchedData
     const languages = useQueryFetch('languages').fetchedData
@@ -100,16 +94,17 @@ export default function page() {
 
             </Grid>
             <Grid sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
-                <CustomeDropDown options={languages} langId={langId} setSelectedLang={selectLang} lg='1' md='1' xs='2' bgcolor='transparent' />
+                <CustomeDropDown options={languages} langId={langId} setSelectedLang={selectLang} lg='1' md='1' xs='2' bgcolor='whitesmoke' />
             </Grid>
-            <Grid container xs={6} lg={11} bgcolor="" sx={{ my: 4, display: 'flex', justifyContent: 'space-around', spacing: 5 }}>
+
+            <Grid container bgcolor="" sx={{ my: 4, display: 'flex', justifyContent: 'space-around', spacing: 5 }}>
 
                 {
                     categories?.map((data: any, index: any) => {
                         return (
                             <Grid key={index} container bgcolor='' xs={6} md={3} sx={{ justifyContent: "center" }}>
 
-                                <Box onClick={() => selectCategory(index, data.id)} >
+                                <Box onClick={() => selectCategory(index, data.id)} sx={{ m: 2 }} >
                                     <Button key={index} bgcolor={data.id == categoryId ? 'white' : ''}>{data.name}</Button>
                                 </Box>
                             </Grid>
@@ -164,21 +159,18 @@ export default function page() {
 
                                     <Grid sx={{
                                         // justifyContent: 'center',
+                                        alignItems: 'center',
                                         mt: { xs: -2, lg: -13 },
                                         mx: { xs: 2.5, sm: 2, md: 2.5, lg: '' }
                                     }}>
 
-                                        <H5 textAlign='start' width='100%'>
+                                        <H5 textAlign='start' width='100%' height='100%'>
 
-                                            {/* Lorem Ipsum is simply dummy text of the printing and
-                                            typesetting ustry. Lorem Ipsum has been the industry s
-                                            standard dummy text ever since the 1500s, when an unknown
-                                            printer took a galley of type and scrambled it to make a type
-                                            specimen book. It has survived not only five centuries, but
-                                            also the leap into electronic typesetting, remaining essentially
-                                            unchanged */}
-                                            {data.description}
 
+                                            {/* {dummyDesc.length > 300 && seeMore != index ? <p>{dummyDesc.slice(0, 300)}  </p> : dummyDesc} */}
+                                            {/* {dummyDesc.length > 300 ? <p style={{ fontSize: '15px', textAlign: 'end', cursor: 'pointer', marginTop: '30px' }} onClick={() => setSeeMore(seeMore !== index ? index : null)}>{seeMore !== index ? 'See More..' : 'See Less'}</p> : null} */}
+                                            {data.description.length > 300 && seeMore != index ? <p>{data.description.slice(0, 300)}  </p> : data.description}
+                                            {data.description.length > 300 ? <p style={{ fontSize: '15px', textAlign: 'end', cursor: 'pointer', marginTop: '30px' }} onClick={() => setSeeMore(seeMore !== index ? index : null)}>{seeMore !== index ? 'See More..' : 'See Less'}</p> : null}
                                         </H5>
 
 
