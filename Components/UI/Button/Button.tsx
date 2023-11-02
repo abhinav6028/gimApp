@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Grid, Box } from '@mui/material'
+import { Box } from '@mui/material'
 import { PRIMARY_COLOUR } from '@/utils/colours'
-import { H5 } from '../Typography/Typography'
+// import { H5 } from '../Typography/Typography'
 
 export default function Button(props: any) {
   const { ml, mr, mt, pt, my, width, onClick, borderRadius, bgcolor, hoverColour, fontFamily, letterSpacing, btnType, display } = props

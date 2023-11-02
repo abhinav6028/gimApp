@@ -29,31 +29,31 @@ export default function ContactUs() {
     ]
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('++++++++++++++++++++++++++++++++++++++')
-        alert('form submitted')
-        let form = {
-            name,
-            email,
-            message
-        }
 
 
-        const rawResponse = await fetch('/api/', {
+        fetch('https://sheetdb.io/api/v1/7m6w4jjwq7cn9', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(form)
-        }).then((res) => {
-            console.log(res, '((((((((((((((((((')
-        }).catch((err) => {
-            console.log(err)
+            body: JSON.stringify({
+                data: [
+                    {
+                        'NAME': name,
+                        'EMAIL': email,
+                        'MESSAGE': message
+                    }
+                ]
+            })
         })
-        const content = await rawResponse.json();
+            .then((response) => {
+                alert('Details submitted successfully')
+                response.json()
+            })
+            .then((data) => console.log(data));
 
-        // print to screen
-        alert(content.data.tableRange)
+
 
         // Reset the form fields
         setMessage('')
@@ -148,6 +148,7 @@ export default function ContactUs() {
                                         placeholder='NAME'
                                         className={Styles.input_lable}
                                         onChange={(e) => setName(e.target.value)}
+                                        value={name}
                                     />
 
                                 </Box>
@@ -163,6 +164,7 @@ export default function ContactUs() {
                                         placeholder='EMAIL'
                                         className={Styles.input_lable}
                                         onChange={(e) => setEmail(e.target.value)}
+                                        value={email}
                                     />
 
                                 </Box>
@@ -182,6 +184,7 @@ export default function ContactUs() {
                                         className={Styles.input_lable}
                                         placeholder='MESSAGE'
                                         onChange={(e) => setMessage(e.target.value)}
+                                        value={message}
 
                                     />
 
