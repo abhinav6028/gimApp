@@ -1,6 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { google } from "googleapis";
-import { STATUS_CODES } from 'http';
 
 type SheetForm = {
     name: string

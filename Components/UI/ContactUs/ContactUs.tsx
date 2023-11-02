@@ -38,7 +38,7 @@ export default function ContactUs() {
         }
 
 
-        const rawResponse = await fetch('/api/route', {
+        const rawResponse = await fetch('/api/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
