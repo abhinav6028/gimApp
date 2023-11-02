@@ -23,7 +23,6 @@ export default function page() {
         },
 
         onSubmit: (values) => {
-
             axios.post(`${BASE_URL}auth/login`,
                 {
                     UserName: values.UserName,
@@ -39,6 +38,8 @@ export default function page() {
                     router.back()
                 }
 
+            }).catch((err) => {
+                console.log(err)
             })
 
         }
