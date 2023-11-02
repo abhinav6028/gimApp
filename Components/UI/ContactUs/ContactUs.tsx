@@ -12,6 +12,7 @@ export default function ContactUs() {
     const [email, setEmail] = React.useState('')
     const [message, setMessage] = React.useState('')
 
+
     const Icons = [
         {
             url: '',
@@ -36,7 +37,8 @@ export default function ContactUs() {
             message
         }
 
-        const rawResponse = await fetch('/app/api/submit', {
+
+        const rawResponse = await fetch('/api/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

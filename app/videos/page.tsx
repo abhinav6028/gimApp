@@ -1,7 +1,7 @@
 "use client"
 
 import Header from '@/Components/UI/Header/Header'
-import { Box, Grid, InputAdornment, OutlinedInput, TextField } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Styles from '../../Styles/search.module.css'
 import { BG_COLOUR } from '@/utils/colours'
@@ -10,42 +10,30 @@ import Button from '@/Components/UI/Button/Button'
 import ImageComponent from '@/Components/UI/ImageComponent/ImageComponent'
 import MobileHeader from '@/Components/UI/Header/MobileHeader';
 import CustomeDropDown from '@/Components/UI/CustomeDropDown/CustomeDropDown'
-import { useQueryFetch, useQueryFetchByHeaders, useQueryFetchById } from '@/hooks/useFetchData'
-// import { Styles } from '../../Styles/scrolling.module.css'
-import qs from "qs";
-import { createBrowserHistory } from "history";
-import { useRouter } from 'next/navigation'
+import { useQueryFetch, useQueryFetchByHeaders } from '@/hooks/useFetchData'
+import { useRouter, useSearchParams } from 'next/navigation'
 import VideoPreview from '@/Components/UI/videoPreview/videoPreview'
 
 export default function page() {
     const [seeMore, setSeeMore] = useState(null)
     const [categoryId, setCategory] = useState(3)
     const [langId, setLangId] = useState(1)
-    const history = createBrowserHistory();
     const router = useRouter()
     const [showVideo, setShowVideo] = useState(false)
 
-    const dummyDesc = `Lorem Ipsum is simply dummy text of the printing and
-typesetting ustry. Lorem Ipsum has been the industry s
-standard dummy text ever since the 1500s, when an unknown
-printer took a galley of type and scrambled it to make a type
-specimen book. It has survived not only five centuries, but
-also the leap into electronic typesetting, remaining essentially
-unchanged`
+    const params = useSearchParams()
 
     useEffect(() => {
-        const filterParams = history.location.search.split('?')
-        const filtersFromParams = qs.parse(filterParams[1]);
-        if (filtersFromParams.categoryId) {
-            setCategory(Number(filtersFromParams.categoryId));
+        if (params.get('categoryId')) {
+            setCategory(Number(params.get('categoryId')));
         }
-        if (filtersFromParams.languageId) {
-            setLangId(Number(filtersFromParams.languageId));
+        if (params.get('languageId')) {
+            setLangId(Number(params.get('languageId')));
         }
     }, []);
+
     const { fetchedData: fetchByCategory } = useQueryFetchByHeaders(`video?languageId=${langId}&categoryId=${categoryId}`)
 
-    console.log(fetchByCategory, '33333333333333', showVideo)
 
 
     const categories = useQueryFetch('category').fetchedData
@@ -53,7 +41,6 @@ unchanged`
 
     const selectCategory = (index: any, id: any) => {
         setCategory(id)
-        // setSelectedBtn(index)
         router.push(`?languageId=${langId}&categoryId=${id}`)
     }
 
@@ -94,7 +81,7 @@ unchanged`
 
             </Grid>
             <Grid sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
-                <CustomeDropDown options={languages} langId={langId} setSelectedLang={selectLang} lg='1' md='1' xs='2' bgcolor='whitesmoke' />
+                <CustomeDropDown options={languages} setSelectedLang={selectLang} lg='1' md='1' xs='2' bgcolor='whitesmoke' />
             </Grid>
 
             <Grid container bgcolor="" sx={{ my: 4, display: 'flex', justifyContent: 'space-around', spacing: 5 }}>
@@ -138,8 +125,7 @@ unchanged`
                             </Grid>
 
                             <Grid container lg={6} bgcolor='' sx={{
-                                // justifyContent: 'center',
-                                // alignItems: 'center'
+
                             }}>
 
                                 <Box sx={{
@@ -153,12 +139,10 @@ unchanged`
                                 <Box sx={{
 
                                     width: '100%',
-                                    // textAlign: 'center',
-                                    // bgcolor: 'red'
+
                                 }}>
 
                                     <Grid sx={{
-                                        // justifyContent: 'center',
                                         alignItems: 'center',
                                         mt: { xs: -2, lg: -13 },
                                         mx: { xs: 2.5, sm: 2, md: 2.5, lg: '' }

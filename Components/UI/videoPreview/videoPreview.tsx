@@ -11,7 +11,6 @@ export default function VideoPreview(props: any) {
     const [videoUrl, setVideoUrl] = React.useState('');
 
     const { fileName } = props;
-    console.log(videoUrl, '@@@@@@@@@@@@@@@@@')
 
     const s3 = new AWS.S3({
         accessKeyId: 'AKIA37K4C6DLEXDWCYP6',
@@ -30,7 +29,6 @@ export default function VideoPreview(props: any) {
             console.error("********************", err);
             message.error(`filed to load ${fileName}.`);
         } else {
-            // console.log(url, '888888888888888')
 
             setVideoUrl(url);
 
