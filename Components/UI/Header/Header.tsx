@@ -7,6 +7,7 @@ import { H5 } from '../Typography/Typography';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
+import { signOut } from 'next-auth/react'
 
 export default function Header() {
 
@@ -28,7 +29,7 @@ export default function Header() {
         },
         {
             name: 'Videos',
-            path: '/videos'
+            path: '/videos?languageId=22&categoryId=4'
         },
         {
             name: 'Testimonials',
@@ -75,7 +76,7 @@ export default function Header() {
 
                 <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} mr={3}>Subscribe</Button>
 
-                <Button mr={5} onClick={() => { Cookies.remove('auth_token'), window.location.reload() }}>Log Out</Button>
+                <Button mr={5} onClick={() => { Cookies.remove('auth_token'), signOut("google"), window.location.reload() }}>Log Out</Button>
 
             </Box>
 

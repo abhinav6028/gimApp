@@ -17,7 +17,7 @@ import VideoPreview from '@/Components/UI/videoPreview/videoPreview'
 export default function page() {
     const [seeMore, setSeeMore] = useState(null)
     const [categoryId, setCategory] = useState(3)
-    const [langId, setLangId] = useState(1)
+    const [langId, setLangId] = useState(22)
     const router = useRouter()
     const [showVideo, setShowVideo] = useState(false)
 
@@ -37,8 +37,10 @@ export default function page() {
 
 
     const categories = useQueryFetch('category').fetchedData
-    const languages = useQueryFetch('languages').fetchedData
+    // const languages = useQueryFetch('languages').fetchedData
+    const languages = [{ id: 22, name: 'English' }, { id: 20, name: 'Tamil' }]
 
+    console.log(languages, '00000000000000000')
     const selectCategory = (index: any, id: any) => {
         setCategory(id)
         router.push(`?languageId=${langId}&categoryId=${id}`)

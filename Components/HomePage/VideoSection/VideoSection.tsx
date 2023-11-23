@@ -30,6 +30,8 @@ export default function VideoSection() {
     ]
 
     const { fetchedData: fetchedData } = useQueryFetch('category')
+    const { fetchedData: videoData } = useQueryFetch('video')
+    console.log(videoData, '+++++++++++++++++++')
 
     // const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
 

@@ -78,14 +78,14 @@ export default async function page() {
     // }
 
     function handleCheckout() {
-        // alert('Hello!');
+        alert('Hello!');
 
-        axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
-
+        axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) => {
+            console.log(res, '333333333333333')
             router.push(res.data.url)
-            
-    
-        )
+        }).catch((err) => {
+            console.log(err, '000000001111111111')
+        })
 
 
 

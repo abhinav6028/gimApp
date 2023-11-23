@@ -11,10 +11,19 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Cookies from 'js-cookie';
+import { useSession, signIn, signOut } from 'next-auth/react'
+
 
 export default function page() {
     const router = useRouter()
+    const session = useSession()
+    // console.log(session, '************************')
+    if (session && session.status === 'authenticated') {
+        Cookies.set('auth_token', session?.data?.user?.email)
+        router.push('/')
+    }
 
+    // console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID, 'hhhellloooowwowowowoow', process.env.NEXT_PUBLIC_GOOGLE_SECRET_ID, session)
     const formik = useFormik({
 
         initialValues: {
@@ -29,12 +38,10 @@ export default function page() {
                     Password: values.Password,
                 }
             ).then((res) => {
-
-                console.log('resssssssssssssssssssss', res.data.success);
+                // console.log('resssssssssssssssssssss', res);
 
                 if (res.data.success) {
                     Cookies.set('auth_token', res.data.accessTocken)
-
                     router.back()
                 }
 
@@ -109,9 +116,13 @@ export default function page() {
 
                                         <Grid container xs={12} sm={12} md={7} lg={12} sx={{
                                             justifyContent: 'center', alignContent: 'center',
-                                            mt: 2.5
+                                            mt: 2.5,
                                         }}>
                                             <Button width='100%' btnType='submit'>Log In</Button>
+                                            <Button width='100%' onClick={() => { signIn("google") }} mt='10px' >
+                                                <img src="/google logo 1.png" alt="" width={'20px'} height={'20px'} />
+                                                SignIn with Google
+                                            </Button>
 
                                         </Grid>
 

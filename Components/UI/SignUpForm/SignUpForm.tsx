@@ -10,6 +10,7 @@ import CustomeDropDown from '../CustomeDropDown/CustomeDropDown';
 import Button from '../Button/Button';
 import cookies from 'js-cookie'
 import { log } from 'console';
+import { message } from 'antd';
 // import { PrimaryButton } from '../Button/Button';
 
 export default function SignUpForm(props: any) {
@@ -40,7 +41,7 @@ export default function SignUpForm(props: any) {
         },
 
         onSubmit: (values) => {
-
+            console.log(values, '?????????????????????')
             axios.post(`${BASE_URL}client`,
                 {
                     firstName: values.firstName,
@@ -60,7 +61,7 @@ export default function SignUpForm(props: any) {
                 }
             ).then((res) => {
 
-                console.log("????????????????????????????/////", res.data.result.success);
+                // console.log("????????????????????????????/////", res.data.result.success);
 
 
                 // -cookies.set('auth_token', res.data.accessTocken)
@@ -86,13 +87,18 @@ export default function SignUpForm(props: any) {
 
                     axios.post(`${BASE_URL}otp/email`,
                         {
-                            subject: "otp to vatify email",
+                            subject: "otp to verify email",
                             email: res.data.result.email
                         }
                     ).then((res) => {
-                        console.log("////////////////////////");
+                        console.log("////////////////////////", res);
+                    }).catch((err) => {
+                        console.log(err, ';;;;;;;;;;;;;')
                     })
 
+                }
+                else {
+                    message.error(res.data.message)
                 }
 
             })

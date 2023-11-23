@@ -10,6 +10,7 @@ import { BG_COLOUR } from '@/utils/colours'
 import Button from '../Button/Button'
 import Cookies from 'js-cookie';
 import { useQueryFetchByHeaders } from '@/hooks/useFetchData'
+import { signOut } from 'next-auth/react'
 
 export default function MobileHeader() {
 
@@ -130,7 +131,7 @@ export default function MobileHeader() {
 
           <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} >Subscribe</Button>
 
-          <Button mt={1} onClick={() => { Cookies.remove('auth_token'), window.location.reload() }}>Log Out</Button>
+          <Button mt={1} onClick={() => { Cookies.remove('auth_token'), signOut("google"), window.location.reload() }}>Log Out</Button>
 
         </Box>
       </Box>

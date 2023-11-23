@@ -4,6 +4,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import AuthProvider from '../Components/AuthProvider/AuthProvider';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -37,9 +38,11 @@ export default function RootLayout({
       <body className={inter.className}>
 
         <QueryClientProvider client={queryClient}>
+          <AuthProvider>
 
-          {children}
+            {children}
 
+          </AuthProvider>
         </QueryClientProvider>
 
 
