@@ -12,12 +12,13 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import Cookies from 'js-cookie';
 import { useSession, signIn, signOut } from 'next-auth/react'
+import GoogleButton from 'react-google-button'
 
 
 export default function page() {
     const router = useRouter()
     const session = useSession()
-    // console.log(session, '************************')
+    console.log(session, '************************')
     if (session && session.status === 'authenticated') {
         Cookies.set('auth_token', session?.data?.user?.email)
         router.push('/')
@@ -74,7 +75,7 @@ export default function page() {
         <Grid xs={10} container sx={{ bgcolor: BG_COLOUR }}>
 
 
-            <Grid container lg={7} sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
+            <Grid container lg={7} sx={{ justifyContent: 'center' }}>
 
                 <Box sx={{
                     bgcolor: '', height: 'fit-content', width: '100%',
@@ -119,10 +120,17 @@ export default function page() {
                                             mt: 2.5,
                                         }}>
                                             <Button width='100%' btnType='submit'>Log In</Button>
-                                            <Button width='100%' onClick={() => { signIn("google") }} mt='10px' >
+                                            {/* <Button width='100%' onClick={() => { signIn("google") }} mt='10px' >
                                                 <img src="/google logo 1.png" alt="" width={'20px'} height={'20px'} />
                                                 SignIn with Google
-                                            </Button>
+                                            </Button> */}
+
+                                            <GoogleButton
+                                                onClick={() => { signIn("google") }}
+                                                type='dark'
+                                                style={{ marginTop: '15px', width: '100%', fontWeight: 'bold', color: '#4285F4' }}
+
+                                            />
 
                                         </Grid>
 

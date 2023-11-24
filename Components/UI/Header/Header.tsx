@@ -76,7 +76,7 @@ export default function Header() {
 
                 <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} mr={3}>Subscribe</Button>
 
-                <Button mr={5} onClick={() => { Cookies.remove('auth_token'), signOut("google"), window.location.reload() }}>Log Out</Button>
+                <Button mr={5} onClick={() => { Cookies.remove('auth_token'), signOut(), window.location.reload() }}>Log Out</Button>
 
             </Box>
 

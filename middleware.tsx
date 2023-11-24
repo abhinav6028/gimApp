@@ -7,7 +7,7 @@ import * as moment from "moment-timezone"
 export function middleware(request: NextRequest) {
 
     const token: any = request.cookies.get("auth_token") || null
-
+    console.log(token, '444444444444444444s44')
     let isToken = false;
 
     let decodedtoken: any = null;

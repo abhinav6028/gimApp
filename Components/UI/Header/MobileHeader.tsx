@@ -131,7 +131,7 @@ export default function MobileHeader() {
 
           <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} >Subscribe</Button>
 
-          <Button mt={1} onClick={() => { Cookies.remove('auth_token'), signOut("google"), window.location.reload() }}>Log Out</Button>
+          <Button mt={1} onClick={() => { Cookies.remove('auth_token'), signOut(), window.location.reload() }}>Log Out</Button>
 
         </Box>
       </Box>

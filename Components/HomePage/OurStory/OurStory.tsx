@@ -5,11 +5,13 @@ import { H4, H5 } from '@/Components/UI/Typography/Typography';
 import { SECONDARY_COLOUR } from '@/utils/colours';
 
 export default function OurStory() {
+
+
     return (
         <Grid container sx={{
             justifyContent: 'center', alignItems: 'center',
             bgcolor: { xs: SECONDARY_COLOUR, sm: '', md: '', lg: '' },
-            my: {  }
+            my: {}, overflowY: 'auto'
 
         }}>
 
@@ -28,7 +30,7 @@ export default function OurStory() {
 
                     <Grid container sx={{ mb: 'auto', justifyContent: 'center', bgcolor: 'transparent' }}>
 
-                        <Box sx={{ mb: 1,bgcolor: 'transparent' }}>
+                        <Box sx={{ mb: 1, bgcolor: 'transparent' }}>
                             <H4 fontWeight='bold'>Our Story</H4>
                         </Box>
 
