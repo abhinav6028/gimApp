@@ -73,9 +73,9 @@ export default function MobileHeader() {
 
         <Box
 
-          onClick={() => router.push('/')}
-          style={{ cursor: 'pointer' }}
-          component="img"
+          // onClick={() => router.push('/')}
+          // style={{ cursor: 'pointer' }}
+          // component="img"
           sx={{
             bgcolor: BG_COLOUR,
             // pt: 1,
@@ -85,8 +85,8 @@ export default function MobileHeader() {
             maxHeight: { xs: 30, sm: 40 },
             maxWidth: { xs: 80, md: 90 },
           }}
-          alt="The house from the offer."
-          src="/assets/logo/logo.png"
+        // alt="The house from the offer."
+        // src="/next.svg"
         />
 
       </Box>
@@ -123,7 +123,7 @@ export default function MobileHeader() {
 
           <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
 
-          <Button mr={5} onClick={() => router.push('/login')} btnName='login'>Log In</Button>
+          <Button mr={5} mt={2} onClick={() => router.push('/login')} btnName='login' >Log In</Button>
 
         </Box>
 

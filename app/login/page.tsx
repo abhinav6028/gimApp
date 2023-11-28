@@ -11,20 +11,36 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Cookies from 'js-cookie';
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signIn } from 'next-auth/react'
 import GoogleButton from 'react-google-button'
+import { message } from 'antd';
 
 
 export default function page() {
     const router = useRouter()
     const session = useSession()
-    console.log(session, '************************')
+    // console.log(session, '************************')
     if (session && session.status === 'authenticated') {
-        Cookies.set('auth_token', session?.data?.user?.email)
-        router.push('/')
+        axios.get(`${BASE_URL}user/${session.data.user?.email}`).then((res) => {
+            axios.post(`${BASE_URL}googleAuth`, {
+                username: session.data.user?.email,
+                name: session.data.user?.name
+            }).then((res) => {
+                console.log(res)
+                Cookies.set('auth_token', res.data.accessTocken)
+                router.push('/')
+                message.success(`Hi, Welcome ${session.data.user?.name}`)
+            }).catch((err) => {
+                console.log(err)
+
+            })
+            // Cookies.set('auth_token', session.data.user?.email)
+            // router.push('/')
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
-    // console.log(process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID, 'hhhellloooowwowowowoow', process.env.NEXT_PUBLIC_GOOGLE_SECRET_ID, session)
     const formik = useFormik({
 
         initialValues: {
@@ -39,7 +55,6 @@ export default function page() {
                     Password: values.Password,
                 }
             ).then((res) => {
-                // console.log('resssssssssssssssssssss', res);
 
                 if (res.data.success) {
                     Cookies.set('auth_token', res.data.accessTocken)
