@@ -34,7 +34,7 @@ export default function CustomeDropDown(props: any) {
             }}>{name}</Typography>
 
             <Box sx={{
-                width: { xs: '100%', lg: '80%' },
+                width: { xs: '100%', lg: '70%' },
                 height: { xs: 35, md: 37 }, mt: 0.6,
                 bgcolor: ''
             }}>

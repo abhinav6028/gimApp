@@ -17,7 +17,7 @@ import VideoPreview from '@/Components/UI/videoPreview/videoPreview'
 export default function page() {
     const [seeMore, setSeeMore] = useState(null)
     const [categoryId, setCategory] = useState(3)
-    const [langId, setLangId] = useState(1)
+    const [langId, setLangId] = useState(22)
     const router = useRouter()
     const [showVideo, setShowVideo] = useState(false)
 
@@ -34,11 +34,13 @@ export default function page() {
 
     const { fetchedData: fetchByCategory } = useQueryFetchByHeaders(`video?languageId=${langId}&categoryId=${categoryId}`)
 
-
+    console.log(fetchByCategory, 'EEEEEEEEEEEEEEEE')
 
     const categories = useQueryFetch('category').fetchedData
-    const languages = useQueryFetch('languages').fetchedData
+    // const languages = useQueryFetch('languages').fetchedData
+    const languages = [{ id: 22, name: 'English' }, { id: 20, name: 'Tamil' }]
 
+    console.log(languages, '00000000000000000')
     const selectCategory = (index: any, id: any) => {
         setCategory(id)
         router.push(`?languageId=${langId}&categoryId=${id}`)
@@ -50,8 +52,8 @@ export default function page() {
 
     }
 
-    const handleImageClick = () => {
-        setShowVideo(!showVideo);
+    const handleImageClick = (index) => {
+        setShowVideo(index);
     };
     return (
         <Grid container sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
@@ -114,10 +116,10 @@ export default function page() {
                                 container
                                 lg={6}
                                 sx={{ justifyContent: 'center', alignItems: 'center' }}
-                                onClick={handleImageClick}
+                                onClick={() => handleImageClick(index)}
                             >
                                 {/* {data?.video?.map((item: any, indx: any) => ( */}
-                                {showVideo ?
+                                {showVideo === index ?
                                     <VideoPreview fileName={data.video} /> :
                                     <ImageComponent />}
 

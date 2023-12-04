@@ -49,6 +49,8 @@ export default function Banner() {
                 src="Assets/Home/gimImage2.png"
                 sx={{
                     ml: { xs: 'auto', md: 3, lg: 5 },
+                    // width: '800px',
+                    // height: '600px'
                     // bgcolor: 'blue',
                 }}
             />

@@ -30,6 +30,8 @@ export default function VideoSection() {
     ]
 
     const { fetchedData: fetchedData } = useQueryFetch('category')
+    const { fetchedData: videoData } = useQueryFetch('video')
+    console.log(videoData, '+++++++++++++++++++')
 
     // const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
 
@@ -103,21 +105,20 @@ export default function VideoSection() {
                                 <Grid container xs={12} sm={6} md={3} sx={{
                                     bgcolor: 'transparent', justifyContent: 'center', alignItem: 'center',
                                     my: { xs: 1.5 }
-                                }}>
+                                }} key={index} >
 
 
-                                    <Box sx={{
+                                    <Box onClick={() => router.push(`/videos?languageId=22&&categoryId=${data.id}`)} sx={{
                                         width: { xs: 270, sm: 230, md: 250, lg: 250 },
                                         height: { xs: 340, sm: 320, md: 310, lg: 330 },
                                         borderRadius: 5,
-                                        backgroundImage: `url(${data.image})`,
+                                        backgroundImage: `url(${data.image ? data.image : `Assets/Home/darkrectangle.png`})`,
                                         cursor: 'pointer',
                                         '&:hover': {
                                             transform: 'scale(1.06)',
                                             transition: '0.5s'
                                         },
                                     }}>
-
                                         <Grid container sx={{
                                             height: '100%',
                                             backgroundImage: `url('Assets/Home/darkrectangle.png')`,

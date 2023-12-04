@@ -6,17 +6,19 @@ import Header from '@/Components/UI/Header/Header'
 import MobileHeader from '@/Components/UI/Header/MobileHeader'
 import { H5 } from '@/Components/UI/Typography/Typography'
 import { BG_COLOUR, PRIMARY_COLOUR } from '@/utils/colours'
-import { Grid, Box, Typography } from '@mui/material'
+import { Grid, Box, Typography, } from '@mui/material'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
 
-export default async function page() {
+export default function page() {
 
+    const [isOffer, setIsOffer] = useState(true)      // just make isOffer false to disable the offer or true to enable the offer
     const router = useRouter()
+    const [price, setPrice] = useState(999)
 
     const token = Cookies.get('auth_token')
 
@@ -77,19 +79,21 @@ export default async function page() {
 
     // }
 
-    function handleCheckout() {
-        // alert('Hello!');
+    function handleCheckout(price: { price: any }) {
+        // alert('subscription price is  ' + price.price);
 
-        axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
-
+        // axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
+        axios.post('http://localhost:4000/payment/checkout', { price }, { headers }).then((res) => {
+            console.log(res, '333333333333333')
             router.push(res.data.url)
-            
-    
-        )
+        }).catch((err) => {
+            console.log(err, '000000001111111111')
+        })
 
 
 
     }
+
 
 
     return (
@@ -218,7 +222,7 @@ export default async function page() {
 
 
 
-                        <Grid container sx={{
+                        {/* <Grid container sx={{
                             justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent',
                             mt: { sm: 6.5, md: 2.5, lg: 6 }
                         }}>
@@ -230,20 +234,72 @@ export default async function page() {
                                 py: { xs: 2, sm: 2, md: 2, lg: 2 },
                                 alignItems: 'center',
                                 border: `1.5px solid ${PRIMARY_COLOUR}`,
-                                mt: { xs: 4, sm: '', md: '', lg: 0 }
+                                mt: { xs: 4, sm: '', md: '', lg: 0 },
+                                // display: 'flex',
+                                justifyContent: 'space-around',
+                                p: 2
+
                             }}>
 
                                 <Typography sx={{
                                     bgcolor: 'transparent',
-                                    ml: 4,
-                                    fontWeight: '550'
-                                }}>$99 Per Month</Typography>
+                                    fontWeight: '550',
+                                    textAlign: 'center'
+                                }}>{`$ ${price} Per Month`}</Typography>
+
+                            </Grid>
+                            <Grid container xs={11} sm={11} md={12} sx={{
+                                // width: '100%',
+                                bgcolor: '#FEF5CD',
+                                borderRadius: 1,
+                                py: { xs: 2, sm: 2, md: 2, lg: 2 },
+                                alignItems: 'center',
+                                border: `1.5px solid ${PRIMARY_COLOUR}`,
+                                mt: { xs: 4, sm: '', md: '', lg: 0 },
+                                // display: 'flex',
+                                justifyContent: 'space-around',
+                                p: 2
+
+
+
+                            }}>
+
+                                <Typography sx={{
+                                    bgcolor: 'transparent',
+                                    fontWeight: '550',
+                                    textAlign: 'center'
+                                }}>{`$ ${price} Per Year`}</Typography>
+
 
                             </Grid>
 
+                        </Grid> */}
+
+
+                        <Grid sx={{ backgroundColor: 'white', width: "100%" }}>
+                            {/* {isOffer ? */}
+                            <Grid
+                                onClick={() => { isOffer ? handleCheckout({ price: 999 }) : null }}
+                                sx={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: isOffer ? 'pointer' : null }}
+                            >
+                                {/* <label htmlFor="" style={{ transform: 'rotate(-30deg)', backgroundColor: 'greenyellow', fontSize: '12px', position: 'absolute', left: [{ xs: '10vw' }, { md: '40vw' }], color: 'goldenrod', fontWeight: '20px' }}>Grab Now!!</label> */}
+                                <label htmlFor="radio1" style={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: isOffer ? 'black' : 'slategray', textDecoration: isOffer ? null : 'line-through' }}>
+                                    $999 per year
+                                </label>
+                            </Grid>
+                            {/* : null} */}
+                            <Grid
+                                onClick={() => handleCheckout({ price: 99 })}
+                                sx={{ backgroundColor: '#FCCB06', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: 'pointer' }}
+                            >
+                                <label htmlFor="radio2" style={{ backgroundColor: '#FCCB06', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: 'black' }}>
+                                    $99 per month
+                                </label>
+                            </Grid>
                         </Grid>
 
-                        <Grid container sx={{
+
+                        {/* <Grid container sx={{
                             justifyContent: 'center', alignItems: 'center', bgcolor: 'transparent',
                             mt: { sm: 4, md: 2.5, lg: 1 }
 
@@ -266,7 +322,7 @@ export default async function page() {
 
                             </Grid>
 
-                        </Grid>
+                        </Grid> */}
 
                     </Grid>
 

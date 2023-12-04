@@ -11,9 +11,12 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Cookies from 'js-cookie';
+import GoogleAuthButton from '@/Components/GoogleAuthButton/GoogleAuthButton';
+
 
 export default function page() {
     const router = useRouter()
+
 
     const formik = useFormik({
 
@@ -30,11 +33,8 @@ export default function page() {
                 }
             ).then((res) => {
 
-                console.log('resssssssssssssssssssss', res.data.success);
-
                 if (res.data.success) {
                     Cookies.set('auth_token', res.data.accessTocken)
-
                     router.back()
                 }
 
@@ -67,7 +67,7 @@ export default function page() {
         <Grid xs={10} container sx={{ bgcolor: BG_COLOUR }}>
 
 
-            <Grid container lg={7} sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
+            <Grid container lg={7} sx={{ justifyContent: 'center' }}>
 
                 <Box sx={{
                     bgcolor: '', height: 'fit-content', width: '100%',
@@ -109,9 +109,11 @@ export default function page() {
 
                                         <Grid container xs={12} sm={12} md={7} lg={12} sx={{
                                             justifyContent: 'center', alignContent: 'center',
-                                            mt: 2.5
+                                            mt: 2.5,
                                         }}>
                                             <Button width='100%' btnType='submit'>Log In</Button>
+
+                                            <GoogleAuthButton />
 
                                         </Grid>
 

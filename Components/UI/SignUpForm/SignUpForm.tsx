@@ -1,5 +1,5 @@
 import { Grid, Box, Typography } from '@mui/material'
-import router, { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { H4 } from '../Typography/Typography';
 import CustomeTextField from '../CustomeTextField/CustomeTextField';
@@ -8,9 +8,8 @@ import axios from 'axios';
 import { BASE_URL } from '@/utils/urls';
 import CustomeDropDown from '../CustomeDropDown/CustomeDropDown';
 import Button from '../Button/Button';
-import cookies from 'js-cookie'
-import { log } from 'console';
-// import { PrimaryButton } from '../Button/Button';
+import { message } from 'antd';
+import GoogleAuthButton from '../../GoogleAuthButton/GoogleAuthButton';
 
 export default function SignUpForm(props: any) {
 
@@ -40,7 +39,7 @@ export default function SignUpForm(props: any) {
         },
 
         onSubmit: (values) => {
-
+            console.log(values, '?????????????????????')
             axios.post(`${BASE_URL}client`,
                 {
                     firstName: values.firstName,
@@ -60,7 +59,7 @@ export default function SignUpForm(props: any) {
                 }
             ).then((res) => {
 
-                console.log("????????????????????????????/////", res.data.result.success);
+                // console.log("????????????????????????????/////", res.data.result.success);
 
 
                 // -cookies.set('auth_token', res.data.accessTocken)
@@ -80,19 +79,24 @@ export default function SignUpForm(props: any) {
                             // "mobile": "8129887972"
                         }
                     ).then((res) => {
-                        console.log("////////////////////////");
+                        console.log(res, "////////////////////////");
                     })
 
 
                     axios.post(`${BASE_URL}otp/email`,
                         {
-                            subject: "otp to vatify email",
+                            subject: "otp to verify email",
                             email: res.data.result.email
                         }
                     ).then((res) => {
-                        console.log("////////////////////////");
+                        console.log("////////////////////////", res);
+                    }).catch((err) => {
+                        console.log(err, ';;;;;;;;;;;;;')
                     })
 
+                }
+                else {
+                    message.error(res.data.message)
                 }
 
             })
@@ -200,8 +204,6 @@ export default function SignUpForm(props: any) {
 
             </Grid>
 
-
-
             <Grid container lg={6} sx={{
                 justifyContent: 'center', alignItems: 'center', bgcolor: '',
                 position: 'absolute',
@@ -252,19 +254,14 @@ export default function SignUpForm(props: any) {
 
                                     <Button width='90%' btnType='submit' >SIGN UP</Button>
 
+                                    <GoogleAuthButton />
                                 </Grid>
 
                             </Grid>
 
                         </Grid>
 
-
-
                     </form>
-
-
-
-
 
                     <Box sx={{
                         width: { xs: '100%', lg: '94%' },

@@ -10,6 +10,7 @@ import { BG_COLOUR } from '@/utils/colours'
 import Button from '../Button/Button'
 import Cookies from 'js-cookie';
 import { useQueryFetchByHeaders } from '@/hooks/useFetchData'
+import { signOut } from 'next-auth/react'
 
 export default function MobileHeader() {
 
@@ -44,6 +45,14 @@ export default function MobileHeader() {
 
   }
 
+
+  const logout = async () => {
+    await signOut(),
+      Cookies.remove('auth_token'),
+      window.location.reload()
+  }
+
+
   return (
 
     <Grid container sx={{
@@ -72,9 +81,9 @@ export default function MobileHeader() {
 
         <Box
 
-          onClick={() => router.push('/')}
-          style={{ cursor: 'pointer' }}
-          component="img"
+          // onClick={() => router.push('/')}
+          // style={{ cursor: 'pointer' }}
+          // component="img"
           sx={{
             bgcolor: BG_COLOUR,
             // pt: 1,
@@ -84,8 +93,8 @@ export default function MobileHeader() {
             maxHeight: { xs: 30, sm: 40 },
             maxWidth: { xs: 80, md: 90 },
           }}
-          alt="The house from the offer."
-          src="/assets/logo/logo.png"
+        // alt="The house from the offer."
+        // src="/next.svg"
         />
 
       </Box>
@@ -122,7 +131,7 @@ export default function MobileHeader() {
 
           <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
 
-          <Button mr={5} onClick={() => router.push('/login')} btnName='login'>Log In</Button>
+          <Button mr={5} mt={2} onClick={() => router.push('/login')} btnName='login' >Log In</Button>
 
         </Box>
 
@@ -130,7 +139,7 @@ export default function MobileHeader() {
 
           <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} >Subscribe</Button>
 
-          <Button mt={1} onClick={() => { Cookies.remove('auth_token'), window.location.reload() }}>Log Out</Button>
+          <Button mt={1} onClick={logout}>Log Out</Button>
 
         </Box>
       </Box>
