@@ -34,7 +34,7 @@ export default function page() {
 
     const { fetchedData: fetchByCategory } = useQueryFetchByHeaders(`video?languageId=${langId}&categoryId=${categoryId}`)
 
-
+    console.log(fetchByCategory, 'EEEEEEEEEEEEEEEE')
 
     const categories = useQueryFetch('category').fetchedData
     // const languages = useQueryFetch('languages').fetchedData
@@ -52,8 +52,8 @@ export default function page() {
 
     }
 
-    const handleImageClick = () => {
-        setShowVideo(!showVideo);
+    const handleImageClick = (index) => {
+        setShowVideo(index);
     };
     return (
         <Grid container sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
@@ -116,10 +116,10 @@ export default function page() {
                                 container
                                 lg={6}
                                 sx={{ justifyContent: 'center', alignItems: 'center' }}
-                                onClick={handleImageClick}
+                                onClick={() => handleImageClick(index)}
                             >
                                 {/* {data?.video?.map((item: any, indx: any) => ( */}
-                                {showVideo ?
+                                {showVideo === index ?
                                     <VideoPreview fileName={data.video} /> :
                                     <ImageComponent />}
 

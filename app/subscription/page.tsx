@@ -14,8 +14,9 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 
 
-export default async function page() {
+export default function page() {
 
+    const [isOffer, setIsOffer] = useState(true)      // just make isOffer false to disable the offer or true to enable the offer
     const router = useRouter()
     const [price, setPrice] = useState(999)
 
@@ -79,9 +80,10 @@ export default async function page() {
     // }
 
     function handleCheckout(price: { price: any }) {
-        alert('subscription price is  ' + price.price);
+        // alert('subscription price is  ' + price.price);
 
-        axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
+        // axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
+        axios.post('http://localhost:4000/payment/checkout', { price }, { headers }).then((res) => {
             console.log(res, '333333333333333')
             router.push(res.data.url)
         }).catch((err) => {
@@ -275,15 +277,17 @@ export default async function page() {
 
 
                         <Grid sx={{ backgroundColor: 'white', width: "100%" }}>
+                            {/* {isOffer ? */}
                             <Grid
-                                onClick={() => { handleCheckout({ price: 999 }) }}
-                                sx={{ backgroundColor: 'greenyellow', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: 'pointer' }}
+                                onClick={() => { isOffer ? handleCheckout({ price: 999 }) : null }}
+                                sx={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: isOffer ? 'pointer' : null }}
                             >
                                 {/* <label htmlFor="" style={{ transform: 'rotate(-30deg)', backgroundColor: 'greenyellow', fontSize: '12px', position: 'absolute', left: [{ xs: '10vw' }, { md: '40vw' }], color: 'goldenrod', fontWeight: '20px' }}>Grab Now!!</label> */}
-                                <label htmlFor="radio1" style={{ backgroundColor: 'greenyellow', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: 'black' }}>
+                                <label htmlFor="radio1" style={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: isOffer ? 'black' : 'slategray', textDecoration: isOffer ? null : 'line-through' }}>
                                     $999 per year
                                 </label>
                             </Grid>
+                            {/* : null} */}
                             <Grid
                                 onClick={() => handleCheckout({ price: 99 })}
                                 sx={{ backgroundColor: '#FCCB06', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: 'pointer' }}

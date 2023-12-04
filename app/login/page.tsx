@@ -11,35 +11,12 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Cookies from 'js-cookie';
-import { useSession, signIn } from 'next-auth/react'
-import GoogleButton from 'react-google-button'
-import { message } from 'antd';
+import GoogleAuthButton from '@/Components/GoogleAuthButton/GoogleAuthButton';
 
 
 export default function page() {
     const router = useRouter()
-    const session = useSession()
-    // console.log(session, '************************')
-    if (session && session.status === 'authenticated') {
-        axios.get(`${BASE_URL}user/${session.data.user?.email}`).then((res) => {
-            axios.post(`${BASE_URL}googleAuth`, {
-                username: session.data.user?.email,
-                name: session.data.user?.name
-            }).then((res) => {
-                console.log(res)
-                Cookies.set('auth_token', res.data.accessTocken)
-                router.push('/')
-                message.success(`Hi, Welcome ${session.data.user?.name}`)
-            }).catch((err) => {
-                console.log(err)
 
-            })
-            // Cookies.set('auth_token', session.data.user?.email)
-            // router.push('/')
-        }).catch((err) => {
-            console.log(err)
-        })
-    }
 
     const formik = useFormik({
 
@@ -135,17 +112,8 @@ export default function page() {
                                             mt: 2.5,
                                         }}>
                                             <Button width='100%' btnType='submit'>Log In</Button>
-                                            {/* <Button width='100%' onClick={() => { signIn("google") }} mt='10px' >
-                                                <img src="/google logo 1.png" alt="" width={'20px'} height={'20px'} />
-                                                SignIn with Google
-                                            </Button> */}
 
-                                            <GoogleButton
-                                                onClick={() => { signIn("google") }}
-                                                type='dark'
-                                                style={{ marginTop: '15px', width: '100%', fontWeight: 'bold', color: '#4285F4' }}
-
-                                            />
+                                            <GoogleAuthButton />
 
                                         </Grid>
 

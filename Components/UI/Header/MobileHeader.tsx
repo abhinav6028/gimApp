@@ -45,6 +45,14 @@ export default function MobileHeader() {
 
   }
 
+
+  const logout = async () => {
+    await signOut(),
+      Cookies.remove('auth_token'),
+      window.location.reload()
+  }
+
+
   return (
 
     <Grid container sx={{
@@ -131,7 +139,7 @@ export default function MobileHeader() {
 
           <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} >Subscribe</Button>
 
-          <Button mt={1} onClick={() => { Cookies.remove('auth_token'), signOut(), window.location.reload() }}>Log Out</Button>
+          <Button mt={1} onClick={logout}>Log Out</Button>
 
         </Box>
       </Box>

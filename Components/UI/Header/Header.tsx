@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
 import { signOut } from 'next-auth/react'
+import { message } from 'antd';
 
 export default function Header() {
 
@@ -17,9 +18,13 @@ export default function Header() {
 
     const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
 
-    // console.log("fetchedData>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", fetchedData?.IsActive);
+    console.log("fetchedData>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", fetchedData);
 
-
+    const logout = async () => {
+        await signOut(),
+            Cookies.remove('auth_token'),
+            window.location.reload()
+    }
 
 
     const headrDaata = [
@@ -41,6 +46,18 @@ export default function Header() {
         }
     ]
 
+    const videoTabOnClick = (data: { name: any; path: any; }) => {
+        if (token) {
+            if (data.name === 'Videos' && fetchedData?.client?.isActive === false) {
+                message.error('Please Subscribe to Continue..')
+            } else {
+                router.push(data.path)
+            }
+        } else {
+            router.push('/login')
+        }
+    }
+
     return (
         <Grid container sx={{
             justifyContent: 'end', py: 1.5, alignItems: 'center',
@@ -54,7 +71,7 @@ export default function Header() {
                 headrDaata.map((data, index) =>
 
                     <Box
-                        onClick={() => router.push(data.path)}
+                        onClick={() => videoTabOnClick(data)}
                         sx={{ mr: { xs: 1.5, md: 2.8 } }}>
 
                         <H5 cursor='pointer' fontFamily='Oxygen' letterSpacing={1.2}>{data.name}</H5>
@@ -73,10 +90,18 @@ export default function Header() {
             </Box>
 
             <Box sx={{ display: token ? 'flex' : 'none' }}>
+                {fetchedData?.client?.isActive ? null
+                    :
+                    <Button
+                        onClick={() => router.push('/subscription')}
+                        style={{ display: fetchedData?.client?.isActive ? 'none' : 'flex' }}
+                        mr={3}
+                    >
+                        Subscribe{fetchedData?.client?.isActive}
+                    </Button>
+                }
 
-                <Button onClick={() => router.push('/subscription')} display={fetchedData?.IsActive && 'none'} mr={3}>Subscribe</Button>
-
-                <Button mr={5} onClick={() => { Cookies.remove('auth_token'), signOut(), window.location.reload() }}>Log Out</Button>
+                <Button mr={5} onClick={logout}>Log Out</Button>
 
             </Box>
 
