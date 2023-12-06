@@ -10,7 +10,8 @@ import SignUpImage from '@/Components/UI/SignUpImage/SignUpImage';
 import SignUpForm from '@/Components/UI/SignUpForm/SignUpForm';
 import { log } from 'console';
 import Authentication from '@/Components/UI/SignUpForm/Authentication';
-import SignUpFormm from '@/Components/UI/SignUpFormm/SignUpFormm';
+// import SignUpFormm from '@/Components/UI/SignUpFormm/SignUpFormm';
+import GoogleAuthButton from '@/Components/GoogleAuthButton/GoogleAuthButton';
 
 
 

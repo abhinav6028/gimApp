@@ -52,7 +52,7 @@ export default function page() {
 
     }
 
-    const handleImageClick = (index) => {
+    const handleImageClick = (index: any) => {
         setShowVideo(index);
     };
     return (

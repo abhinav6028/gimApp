@@ -10,10 +10,12 @@ import CustomeDropDown from '../CustomeDropDown/CustomeDropDown';
 import Button from '../Button/Button';
 import { message } from 'antd';
 import GoogleAuthButton from '../../GoogleAuthButton/GoogleAuthButton';
+import { red } from '@mui/material/colors';
 
-export default function SignUpForm(props: any) {
-
+// export default function SignUpForm(props: any) {
+export default function SignUpForm(props) {
     const { check, setCheck, clientData, setClientData } = props
+    console.log(clientData, 'client Data')
 
     const [gender, setGender] = React.useState('');
 
@@ -34,8 +36,19 @@ export default function SignUpForm(props: any) {
             mobile: "",
             whatsApp: "",
             email: "",
-            password: ""
+            password: "",
+            confirmPassword: "",
 
+        },
+        validate: (values) => {
+            let errors = {};
+            if (!values.confirmPassword) {
+                errors.confirmPassword = 'confirm password is required'
+            } else if (values.password != values.confirmPassword) {
+                errors.confirmPassword = 'confirm password is not matched'
+            }
+
+            return errors
         },
 
         onSubmit: (values) => {
@@ -50,7 +63,7 @@ export default function SignUpForm(props: any) {
                     place: values.place,
                     city: values.city,
                     state: values.state,
-                    gender: gender,
+                    // gender: gender,
                     mobile: values.mobile,
                     whatsApp: values.whatsApp,
                     email: values.email,
@@ -73,14 +86,14 @@ export default function SignUpForm(props: any) {
 
                     setClientData(res.data)
 
-                    axios.post(`${BASE_URL}otp/mobile`,
-                        {
-                            mobile: res.data.result.mobile
-                            // "mobile": "8129887972"
-                        }
-                    ).then((res) => {
-                        console.log(res, "////////////////////////");
-                    })
+                    // axios.post(`${BASE_URL}otp/mobile`,
+                    //     {
+                    //         mobile: res.data.result.mobile
+                    //         // "mobile": "8129887972"
+                    //     }
+                    // ).then((res) => {
+                    //     console.log(res, "////////////////////////");
+                    // })
 
 
                     axios.post(`${BASE_URL}otp/email`,
@@ -90,6 +103,9 @@ export default function SignUpForm(props: any) {
                         }
                     ).then((res) => {
                         console.log("////////////////////////", res);
+                        if (res.data.success) {
+                            message.success(`Otp sent to your email`)
+                        }
                     }).catch((err) => {
                         console.log(err, ';;;;;;;;;;;;;')
                     })
@@ -111,13 +127,15 @@ export default function SignUpForm(props: any) {
             fieldName: "First Name",
             id: 'firstName',
             type: 'text',
-            inputType: "text"
+            inputType: "text",
+            required: true
         },
         {
             fieldName: "Last Name",
             id: 'lastName',
             type: 'text',
-            inputType: "text"
+            inputType: "text",
+            // required:''
         },
         {
             fieldName: "dateOfBirth",
@@ -129,13 +147,16 @@ export default function SignUpForm(props: any) {
             fieldName: "User Name",
             id: 'username',
             type: 'text',
-            inputType: "text"
+            inputType: "text",
+            required: true
         },
         {
             fieldName: "Mobile ",
             id: 'mobile',
             type: 'number',
-            inputType: "text"
+            inputType: "text",
+            required: true
+
         },
         {
             fieldName: "Watsap number ",
@@ -143,17 +164,18 @@ export default function SignUpForm(props: any) {
             type: 'number',
             inputType: "text"
         },
+        // {
+        //     fieldName: "Gender",
+        //     id: 'gender',
+        //     type: 'dropDown',
+        //     inputType: "dropDown"
+        // },
         {
             fieldName: "Email",
             id: 'email',
             type: 'email',
-            inputType: "text"
-        },
-        {
-            fieldName: "Gender",
-            id: 'gender',
-            type: 'dropDown',
-            inputType: "dropDown"
+            inputType: "text",
+            required: true
         },
         {
             fieldName: "State",
@@ -177,11 +199,22 @@ export default function SignUpForm(props: any) {
             fieldName: "Password",
             id: 'password',
             type: 'password',
-            inputType: "text"
+            inputType: "text",
+            required: true
+        },
+        {
+            fieldName: "Confirm Password",
+            id: 'confirmPassword',
+            type: 'password',
+            inputType: "text",
+            required: true
         },
 
-    ]
 
+    ]
+    const optionalFields = [{
+
+    }]
 
     console.log("selectedValue/////////////////////////////", gender);
 
@@ -215,24 +248,38 @@ export default function SignUpForm(props: any) {
                 <Grid container xs={10} md={10} lg={10} bgcolor='' sx={{
                     alignItems: 'center',
                     justifyContent: '',
-                    bgcolor: ''
-                }}>
+                    bgcolor: '',
 
-                    <H4 textAlign='start' fontWeight='bold'>SIGN UP</H4>
+                }}>
+                    <Grid sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+
+                        <GoogleAuthButton />
+
+                    </Grid>
+                    <hr color='black' style={{ marginTop: '50px', width: '100%' }} />
+                    <H4 textAlign='start' fontWeight='bold' >SIGN UP</H4>
 
                     <form style={{ width: '100%', background: '' }} onSubmit={formik.handleSubmit} >
 
                         <Grid container bgcolor='' sx={{
+
                             justifyContent: { xs: 'center', sm: 'center', md: '', lg: '' }
                         }}>
 
                             {
                                 formItems.map((data: any, index: any) => {
+                                    // formItems.map((data, index) => {
 
                                     switch (data.inputType) {
                                         case 'text':
                                             return (
-                                                <CustomeTextField data={data} formik={formik} fieldWidth='80%' />
+                                                <>
+                                                    <CustomeTextField data={data} formik={formik} fieldWidth='80%' required={data.required ? true : false} />
+                                                    {formik.touched[data.id] && formik.errors[data.id] && (
+                                                        <span style={{ color: 'red' }}>{formik.errors[data.id]}</span>
+                                                    )}
+                                                </>
+
                                             )
                                             break;
                                         case 'dropDown':
@@ -254,7 +301,7 @@ export default function SignUpForm(props: any) {
 
                                     <Button width='90%' btnType='submit' >SIGN UP</Button>
 
-                                    <GoogleAuthButton />
+                                    {/* <GoogleAuthButton /> */}
                                 </Grid>
 
                             </Grid>

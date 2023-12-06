@@ -44,7 +44,7 @@ function GoogleAuthButton() {
         <GoogleButton
             onClick={() => { signIn("google") }}
             type='dark'
-            style={{ marginTop: '15px', width: '100%', fontWeight: 'bold', color: '#4285F4' }}
+            style={{ marginTop: '35px', width: '400px', fontWeight: 'bold', color: '#4285F4' }}
 
         />
     )
