@@ -6,6 +6,7 @@ import { PRIMARY_COLOUR } from '@/utils/colours';
 import Button from '@/Components/UI/Button/Button';
 import { useQueryFetch, useQueryFetchByHeaders } from '@/hooks/useFetchData';
 import { useRouter } from 'next/navigation';
+import { message } from 'antd';
 
 
 export default function VideoSection() {
@@ -40,7 +41,7 @@ export default function VideoSection() {
     // console.log("onr???????????????????????", one);
 
 
-    // console.log("fetchedData", fetchedData);
+    console.log("fetchedData", data);
 
     const router = useRouter()
 
@@ -108,7 +109,7 @@ export default function VideoSection() {
                                 }} key={index} >
 
 
-                                    <Box onClick={() => router.push(`/videos?languageId=22&&categoryId=${data.id}`)} sx={{
+                                    <Box onClick={data?.client?.isActive === false ? () => message.error('Please Login to Continue..') : () => router.push(`/videos?languageId=22&&categoryId=${data.id}`)} sx={{
                                         width: { xs: 270, sm: 230, md: 250, lg: 250 },
                                         height: { xs: 340, sm: 320, md: 310, lg: 330 },
                                         borderRadius: 5,

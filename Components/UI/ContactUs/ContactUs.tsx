@@ -112,7 +112,7 @@ export default function ContactUs() {
                         <Box sx={{
                             ml: { xs: 2, lg: 15 }
                         }}>
-                            <H5 fontFamily='Oxygen' color='grey'>email@gmail.com</H5>
+                            <H5 fontFamily='Oxygen' color='grey'>contact@fitpeps.com</H5>
                         </Box>
 
                     </Grid>

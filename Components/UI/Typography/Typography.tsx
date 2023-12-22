@@ -74,3 +74,18 @@ export const H5 = (props: any) => {
         }}>{props.children}</Typography>
     )
 }
+export const H6 = (props: any) => {
+
+    const { m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py, fontWeight, cursor, width, color, textAlign, fontFamily, letterSpacing } = props
+
+    return (
+        <Typography sx={{
+            fontSize: { xs: 14, sm: 18, md: 13 },
+            fontWeight: fontWeight, cursor: cursor,
+            width: width ? width : '100%', mt: mt,
+            textAlign: { xs: 'center', lg: textAlign ? textAlign : 'center' },
+            my: 0.5, color: color, bgcolor: 'transparent', fontFamily: fontFamily,
+            letterSpacing: letterSpacing ? letterSpacing : ''
+        }}>{props.children}</Typography>
+    )
+}
