@@ -8,6 +8,7 @@ import { useFormik } from 'formik';
 import axios from 'axios';
 import { BASE_URL } from '@/utils/urls';
 import Cookies from 'js-cookie';
+import { message } from 'antd';
 
 
 export default function Authentication(props: any) {
@@ -46,9 +47,10 @@ export default function Authentication(props: any) {
             ).then((res) => {
 
                 if (res.data.success) {
-
+                    message.success('Otp verified successfully')
                     Cookies.set('auth_token', clientData.accessTocken)
-                    router.back('/')
+                    router.back()
+
 
                 }
             })
@@ -141,7 +143,7 @@ export default function Authentication(props: any) {
                                     // display: buttonDisplay ? 'flex' : 'none'
                                 }}>
 
-                                    <Button width='100%' borderRadius='10px'>VERIFY</Button>
+                                    <Button btnType='submit' width='100%' borderRadius='10px'>VERIFY</Button>
 
                                 </Box>
 

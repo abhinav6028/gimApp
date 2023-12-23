@@ -4,7 +4,7 @@ import React from 'react';
 import { Box, Grid } from '@mui/material'
 import { SECONDARY_COLOUR, PRIMARY_COLOUR } from '@/utils/colours';
 import Button from '@/Components/UI/Button/Button';
-import { H1, H2, H5 } from '@/Components/UI/Typography/Typography';
+import { H1, H2, H5, H6 } from '@/Components/UI/Typography/Typography';
 import Dumbel from '@/Components/UI/Dumbel/Dumbel';
 import { useRouter } from 'next/navigation';
 import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
@@ -19,19 +19,19 @@ export default function Banner() {
     const items = [
         {
             imgUrl: 'Assets/Icons/Treadmill.png',
-            title: 'red'
+            title: 'Muscle gain'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'blue'
+            title: 'Weight Loss'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'red'
+            title: 'Men sexual health enhancement program'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'blue'
+            title: 'Women sexual health enhancement program'
         },
     ]
 
@@ -46,7 +46,7 @@ export default function Banner() {
 
             <Grid xs={6} md={3.3}
                 component="img"
-                src="Assets/Home/gimImage2.png"
+                src="Assets/Home/img1.png"
                 sx={{
                     ml: { xs: 'auto', md: 3, lg: 5 },
                     // width: '800px',
@@ -86,8 +86,11 @@ export default function Banner() {
                         items.map((data, index) =>
 
                             <Box sx={{
-                                width: { md: 80, lg: 120 },
-                                height: { md: 80, lg: 100 },
+                                // width: { md: 80, lg: 120 },
+                                width: { md: 100, lg: 120 },
+                                height: { md: 160, lg: 160 },
+                                backgroundImage: 'url("Assets/Icons/Treadmill.png")',
+                                backgroundSize: 'cover'
                             }}>
 
                                 <Grid container height='100%' sx={{
@@ -110,7 +113,7 @@ export default function Banner() {
                                         }}
                                     />
 
-                                    <H5 fontWeight='bold' letterSpacing={1} fontFamily="Oxygen" >Diet</H5>
+                                    <H6 fontWeight='bold' letterSpacing={1} fontFamily="Oxygen" >{data.title}</H6>
 
                                 </Grid>
 

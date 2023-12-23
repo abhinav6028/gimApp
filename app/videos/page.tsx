@@ -13,6 +13,10 @@ import CustomeDropDown from '@/Components/UI/CustomeDropDown/CustomeDropDown'
 import { useQueryFetch, useQueryFetchByHeaders } from '@/hooks/useFetchData'
 import { useRouter, useSearchParams } from 'next/navigation'
 import VideoPreview from '@/Components/UI/videoPreview/videoPreview'
+import { message } from 'antd'
+import axios from 'axios'
+import { BASE_URL } from '@/utils/urls'
+import Cookies from 'js-cookie'
 
 export default function page() {
     const [seeMore, setSeeMore] = useState(null)
@@ -24,6 +28,18 @@ export default function page() {
     const params = useSearchParams()
 
     useEffect(() => {
+        const token = Cookies.get('auth_token')
+        // const data = useQueryFetchByHeaders('auth/profile').fetchedData
+        axios.get(`${BASE_URL}auth/profile`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
+            console.log(res, 'ressssssssssssssssss')
+            if (res?.data?.result?.client?.isActive === false) {
+                message.error('Please Subscribe to Continue..')
+                router.push('/')
+            }
+
+        }).catch((err) => {
+            console.log(err)
+        })
         if (params.get('categoryId')) {
             setCategory(Number(params.get('categoryId')));
         }
@@ -52,7 +68,7 @@ export default function page() {
 
     }
 
-    const handleImageClick = (index) => {
+    const handleImageClick = (index: any) => {
         setShowVideo(index);
     };
     return (

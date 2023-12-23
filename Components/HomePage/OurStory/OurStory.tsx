@@ -39,13 +39,14 @@ export default function OurStory() {
                             alignItems: 'center', bgcolor: 'transparent'
                         }}>
                             <H5 fontWeight='bold' >
-                                Lorem Ipsum is simply dummy text of the printing and
+                                {/* Lorem Ipsum is simply dummy text of the printing and
                                 typesetting industry. Lorem Ipsum has been the industry's
                                 standard dummy text ever since the 1500s, when an unknown
                                 printer took a galley of type and scrambled it to make a type
                                 specimen book. It has survived not only five centuries, but
                                 also the leap into electronic typesetting, remaining essentially
-                                unchanged
+                                unchanged */}
+                                Welcome to Fitpeps.com! We're thrilled to have you embark on this journey towards a healthier you. With just 15 minutes of daily home workouts and a simple, effective diet plan, you're already on the path to positive change. Remember, every small step adds up, and we're here to support and guide you every step of the way. Your commitment and dedication will bring about remarkable results, and we can't wait to celebrate your progress and achievements. Let's work together to create a fitter, happier, and more vibrant version of you!
                             </H5>
                         </Grid>
 

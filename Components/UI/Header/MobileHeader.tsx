@@ -83,7 +83,7 @@ export default function MobileHeader() {
 
           // onClick={() => router.push('/')}
           // style={{ cursor: 'pointer' }}
-          // component="img"
+          component="img"
           sx={{
             bgcolor: BG_COLOUR,
             // pt: 1,
@@ -93,8 +93,8 @@ export default function MobileHeader() {
             maxHeight: { xs: 30, sm: 40 },
             maxWidth: { xs: 80, md: 90 },
           }}
-        // alt="The house from the offer."
-        // src="/next.svg"
+          alt="The house from the offer."
+          src="/Assets/Final.png"
         />
 
       </Box>

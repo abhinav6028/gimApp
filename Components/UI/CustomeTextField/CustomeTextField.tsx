@@ -4,7 +4,7 @@ import Styles from '../../../Styles/inputfield.module.css'
 
 export default function CustomeTextField(props: any) {
 
-    const { data, formik, lg, one, xs, justifyContent, fieldHeight, fieldWidth, buttonDisplay, setButtonDisplay, buttonDisplay2, setButtonDisplay2 } = props
+    const { data, formik, lg, one, xs, justifyContent, fieldHeight, fieldWidth, buttonDisplay, setButtonDisplay, buttonDisplay2, setButtonDisplay2, required } = props
 
 
     return (
@@ -44,8 +44,9 @@ export default function CustomeTextField(props: any) {
                     onChange={formik.handleChange}
                     value={formik.values[data.id]}
                     // onError={formik.touched[data.id] && Boolean(formik.errors[data.id])}
-                    helperText={formik.touched[data.id] && formik.errors[data.id]}
+                    // helperText={formik.touched[data.id] && formik.errors[data.id]}
                     onBlur={formik.handleBlur, () => { setButtonDisplay(!buttonDisplay) }}
+                    required={required ? true : false}
 
                 />
 
