@@ -44,12 +44,12 @@ export default function Banner() {
             }}
         >
 
-            <Grid xs={6} md={3.3}
+            <Grid xs={6} md={4}
                 component="img"
                 src="Assets/Home/img1.png"
                 sx={{
-                    ml: { xs: 'auto', md: 3, lg: 5 },
-                    // width: '800px',
+                    ml: { xs: 'auto', md: 3, lg: 3 },
+                    // width: '600px',
                     // height: '600px'
                     // bgcolor: 'blue',
                 }}
@@ -122,11 +122,11 @@ export default function Banner() {
                         )
                     }
 
-                    <Button
+                    {fetchedData?.client?.isActive === false || !fetchedData ? <Button
                         display={fetchedData?.IsActive && 'none'}
                         onClick={() => router.push('/subscription')}
                         letterSpacing={1.2} fontFamily="Oxygen"
-                        mt='auto' >Subscribe</Button>
+                        mt='auto' >Subscribe</Button> : null}
 
                 </Grid>
 

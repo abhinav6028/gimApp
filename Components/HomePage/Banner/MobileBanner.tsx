@@ -2,29 +2,47 @@
 
 import React from 'react';
 import { Typography, Grid, Box } from "@mui/material";
-import { H1, H2, H5, } from '@/Components/UI/Typography/Typography';
+import { H1, H2, H5, H6, } from '@/Components/UI/Typography/Typography';
 import { SECONDARY_COLOUR, PRIMARY_COLOUR } from '@/utils/colours';
 import Button from '@/Components/UI/Button/Button';
 
 
 
 export default function MobileBanner() {
+    // const items = [
+    //     {
+    //         imgUrl: 'Assets/Icons/Treadmill.png',
+    //         title: 'red'
+    //     },
+    //     {
+    //         imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
+    //         title: 'blue'
+    //     },
+    //     {
+    //         imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
+    //         title: 'red'
+    //     },
+    //     {
+    //         imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
+    //         title: 'blue'
+    //     },
+    // ]
     const items = [
         {
             imgUrl: 'Assets/Icons/Treadmill.png',
-            title: 'red'
+            title: 'Muscle gain'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'blue'
+            title: 'Weight Loss'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'red'
+            title: 'Men sexual health enhancement program'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'blue'
+            title: 'Women sexual health enhancement program'
         },
     ]
     return (
@@ -48,11 +66,12 @@ export default function MobileBanner() {
 
                 <Grid container xs={8}
                     component='img'
-                    src="Assets/Home/gimImage2.png"
+                    src="Assets/Home/img1.png"
                     sx={{
                         bgcolor: '', justifyContent: 'center', alignItems: 'center',
                         // mt: -4,
                         height: { xs: 340, sm: 580 },
+                        // width: { xs: 340, sm: 580 },
                         mt: { xs: 'auto', sm: 'auto', md: -4, lg: -4 }
                     }}
 
@@ -65,9 +84,11 @@ export default function MobileBanner() {
 
                             <Grid sx={{
                                 bgcolor: SECONDARY_COLOUR,
-                                width: { xs: 65, sm: 100 },
-                                height: { xs: 65, sm: 100 },
-                                borderRadius: 1
+                                width: { xs: 100, sm: 100 },
+                                height: {
+                                    xs: ((index === 0 || index === 1 ? '80' : 110)), sm: 100
+                                },
+                                borderRadius: 1, marginTop: '10px', padding: '5px'
                             }}>
 
 
@@ -79,7 +100,7 @@ export default function MobileBanner() {
                                 }}>
 
                                     <Grid container sx={{ height: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', bgcolor: 'transparent' }}>
-
+                                        {/* 
                                         <Box
                                             component='img'
                                             src='Assets/Icons/Treadmill.png'
@@ -89,13 +110,13 @@ export default function MobileBanner() {
                                                 bgcolor: 'transparent'
 
                                             }}
-                                        />
+                                        /> */}
 
                                         <Box sx={{
-                                            mt: { xs: 0, sm: 0.5 },
-                                            bgcolor: 'transparent'
+                                            // mt: { xs: 0, sm: 0.5 },
+                                            bgcolor: 'transparent', textAlign: 'center', display: 'flex', alignItems: 'center'
                                         }}>
-                                            <H5 fontWeight='bold' >Diet</H5>
+                                            <H6 fontWeight='semibold' >{data.title}</H6>
                                         </Box>
 
 
