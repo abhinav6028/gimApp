@@ -10,7 +10,8 @@ const handler = NextAuth({
         GoogleProvider({
             clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? "",
             clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET_ID ?? "",
-            redirectUri: "http://localhost:3000/api/auth/callback/google", // run the app the same port number which is given in the redirect url (3000)
+            // redirectUri: "http://localhost:3000/api/auth/callback/google", // run the app the same port number which is given in the redirect url (3000)
+            redirectUri: "https://fitpeps.com/api/auth/callback/google", // run the app the same port number which is given in the redirect url (3000)
         })
     ],
     secret: process.env.NEXT_AUTH_SECRET ?? "",

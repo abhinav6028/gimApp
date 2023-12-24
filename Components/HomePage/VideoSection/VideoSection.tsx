@@ -168,12 +168,12 @@ export default function VideoSection() {
                 </Grid>
 
             </Grid>
-
-            <Grid container sx={{ mt: 5, justifyContent: 'center', alignItems: 'center' }}>
-                <Button letterSpacing={1.2} fontFamily="Oxygen"
-                    display={data?.IsActive && 'none'}
-                    onClick={() => router.push('/subscription')}>Subscribe</Button>
-            </Grid>
+            {data?.client?.isActive === false || !data ?
+                <Grid container sx={{ mt: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Button letterSpacing={1.2} fontFamily="Oxygen"
+                        display={data?.IsActive && 'none'}
+                        onClick={() => router.push('/subscription')}>Subscribe</Button>
+                </Grid> : null}
 
         </Grid >
 

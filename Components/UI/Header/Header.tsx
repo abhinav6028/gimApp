@@ -60,51 +60,59 @@ export default function Header() {
 
     return (
         <Grid container sx={{
-            justifyContent: 'end', py: 1.5, alignItems: 'center',
+            justifyContent: 'space-between', py: 1.5, alignItems: 'center',
             // bgcolor: 'red',
             // bgcolor: { xs: 'red', sm: 'blue', md: 'green', lg: 'pink' },
             zIndex: 100, position: 'fixed',
             display: { xs: 'none', sm: 'none', md: 'flex' }
         }}>
+            <Box
+                component="img"
+                src='/Assets/logo.png'
+                width={'200px'}
+                sx={{ paddingX: '20px', paddingY: '10px', marginLeft: '36px' }}
+            />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
-            {
-                headrDaata.map((data, index) =>
+                {
+                    headrDaata.map((data, index) =>
 
-                    <Box
-                        onClick={() => videoTabOnClick(data)}
-                        sx={{ mr: { xs: 1.5, md: 2.8 } }}>
+                        <Box
+                            onClick={() => videoTabOnClick(data)}
+                            sx={{ mr: { xs: 1.5, md: 2.8 } }}>
 
-                        <H5 cursor='pointer' fontFamily='Oxygen' letterSpacing={1.2}>{data.name}</H5>
+                            <H5 cursor='pointer' fontFamily='Oxygen' letterSpacing={1.2}>{data.name}</H5>
 
-                    </Box>
+                        </Box>
 
-                )
-            }
-
-            <Box sx={{ display: token ? 'none' : 'flex' }}>
-
-                <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
-
-                <Button mr={5} onClick={() => { router.push('/login') }} btnName='login'>Log In</Button>
-
-            </Box>
-
-            <Box sx={{ display: token ? 'flex' : 'none' }}>
-                {fetchedData?.client?.isActive ? null
-                    :
-                    <Button
-                        onClick={() => router.push('/subscription')}
-                        style={{ display: fetchedData?.client?.isActive ? 'none' : 'flex' }}
-                        mr={3}
-                    >
-                        Subscribe{fetchedData?.client?.isActive}
-                    </Button>
+                    )
                 }
 
-                <Button mr={5} onClick={logout}>Log Out</Button>
+                <Box sx={{ display: token ? 'none' : 'flex' }}>
+
+                    <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
+
+                    <Button mr={5} onClick={() => { router.push('/login') }} btnName='login'>Log In</Button>
+
+                </Box>
+
+                <Box sx={{ display: token ? 'flex' : 'none' }}>
+                    {fetchedData?.client?.isActive ? null
+                        :
+                        <Button
+                            onClick={() => router.push('/subscription')}
+                            style={{ display: fetchedData?.client?.isActive ? 'none' : 'flex' }}
+                            mr={3}
+                        >
+                            Subscribe{fetchedData?.client?.isActive}
+                        </Button>
+                    }
+
+                    <Button mr={5} onClick={logout}>Log Out</Button>
+
+                </Box>
 
             </Box>
-
 
 
         </Grid >

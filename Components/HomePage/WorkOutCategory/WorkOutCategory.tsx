@@ -8,25 +8,42 @@ import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
 
 export default function WorkOutCategory() {
 
+    // const items = [
+    //     {
+    //         imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
+    //         title: 'red'
+    //     },
+    //     {
+    //         imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
+    //         title: 'blue'
+    //     },
+    //     {
+    //         imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
+    //         title: 'red'
+    //     },
+    //     {
+    //         imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
+    //         title: 'blue'
+    //     },
+    // ]
     const items = [
         {
-            imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'red'
+            imgUrl: 'Assets/Icons/Treadmill.png',
+            title: 'Muscle gain'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'blue'
+            title: 'Weight Loss'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'red'
+            title: 'Men sexual health enhancement program'
         },
         {
             imgUrl: 'Assets/WorkoutCategory/Treadmill.png',
-            title: 'blue'
+            title: 'Women sexual health enhancement program'
         },
     ]
-
     const data = useQueryFetchByHeaders('auth/profile').fetchedData
 
     return (
@@ -83,7 +100,7 @@ export default function WorkOutCategory() {
                                         }}
                                     />
 
-                                    <H5 fontWeight='bold' >Diet</H5>
+                                    <H5 fontWeight='bold' >{data.title}</H5>
 
                                 </Grid>
 
@@ -92,9 +109,9 @@ export default function WorkOutCategory() {
                         )}
 
                         <Box sx={{ mt: { md: 2 } }}>
-
-                            <Button letterSpacing={1.2} display={data?.IsActive && 'none'} fontFamily="Oxygen">Subscribe</Button>
-
+                            {data?.client?.isActive === false || !data ?
+                                <Button letterSpacing={1.2} display={data?.IsActive && 'none'} fontFamily="Oxygen">Subscribe</Button>
+                                : null}
                         </Box>
 
                     </Grid>

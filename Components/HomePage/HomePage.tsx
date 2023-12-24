@@ -26,9 +26,9 @@ export default function HomePage() {
 
             <WorkOutCategory />
 
-            <ClientSays />
-
             <OurStory />
+
+            <ClientSays />
 
             <ContactUs />
 
