@@ -19,11 +19,11 @@ export default function ContactUs() {
             path: 'Assets/Icons/YouTube.png'
         },
         {
-            url: '',
+            url: 'https://www.instagram.com/fitpeps999?utm_source=qr&igsh=MXg2MWw3MTdyazcwNg==',
             path: 'Assets/Icons/Instagram.png'
         },
         {
-            url: '',
+            url: 'https://www.facebook.com/profile.php?id=61550782891783&mibextid=ZbWKwL',
             path: 'Assets/Icons/Facebook.png'
         },
     ]
@@ -112,7 +112,14 @@ export default function ContactUs() {
                         <Box sx={{
                             ml: { xs: 2, lg: 15 }
                         }}>
-                            <H5 fontFamily='Oxygen' color='grey'>contact@fitpeps.com</H5>
+                            {/* <H5 onClick={() => window.open('mailto:contact@fitpeps.com')} fontFamily='Oxygen' color='grey'>contact@fitpeps.com</H5> */}
+                            <a href='mailto:contact@fitpeps.com' style={{ fontFamily: 'Oxygen', color: 'grey', textDecoration: 'none' }}>
+                                <H5>
+                                    contact@fitpeps.com
+                                </H5>
+                            </a>
+
+
                         </Box>
 
                     </Grid>
@@ -213,15 +220,18 @@ export default function ContactUs() {
 
                             {
                                 Icons.map((data, index) =>
+                                    <a href={data.url}>
 
-                                    <Box
-                                        component='img'
-                                        src={data.path}
-                                        sx={{
-                                            height: 30,
-                                            width: 30, cursor: 'pointer'
-                                        }}
-                                    />
+                                        <Box
+                                            component='img'
+                                            src={data.path}
+                                            sx={{
+                                                height: 30,
+                                                width: 30, cursor: 'pointer'
+                                            }}
+
+                                        />
+                                    </a>
 
                                 )
                             }

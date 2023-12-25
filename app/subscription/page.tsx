@@ -82,13 +82,11 @@ export default function page() {
     function handleCheckout(price: { price: any }) {
         // alert('subscription price is  ' + price.price);
 
-        // axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
-        // axios.post('http://localhost:4000/payment/checkout', { price }, { headers }).then((res) => {
-        axios.post('http://localhost:4000/phonepe/initiate-payment', { price }, { headers }).then((res) => {
+        axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
+            // axios.post('http://localhost:4000/payment/checkout', { price }, { headers }).then((res) => {
+            // axios.post('http://localhost:4000/phonepe/initiate-payment', { price }, { headers }).then((res) => {
             console.log(res, '333333333333333')
-            // window.location.href = res.data
             router.push(res.data.url)
-            // router.push('/success')
         }).catch((err) => {
             console.log(err, '000000001111111111')
         })
@@ -291,14 +289,14 @@ export default function page() {
                                 </label>
                             </Grid>
                             {/* : null} */}
-                            <Grid
+                            {/* <Grid
                                 onClick={() => handleCheckout({ price: 99 })}
                                 sx={{ backgroundColor: '#FCCB06', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: 'pointer' }}
                             >
                                 <label htmlFor="radio2" style={{ backgroundColor: '#FCCB06', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: 'black' }}>
                                     $99 per month
                                 </label>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
 
 

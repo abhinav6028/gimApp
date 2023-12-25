@@ -52,6 +52,7 @@ export default function Banner() {
                     // width: '600px',
                     // height: '600px'
                     // bgcolor: 'blue',
+                    // boxShadow: '4px 4px 4px 4px'
                 }}
             />
 
@@ -78,7 +79,8 @@ export default function Banner() {
                     ml: { md: 6, lg: 20 },
                     mb: { md: 'auto', lg: 'auto' },
                     justifyContent: 'space-around', alignItems: 'center',
-                    bgcolor: ''
+                    bgcolor: '',
+
                 }}>
 
                     {

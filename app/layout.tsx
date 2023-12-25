@@ -30,7 +30,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&family=Oxygen:wght@700&display=swap" rel="stylesheet"></link>
-
+        <title>Fitpeps</title>
       </head>
 
 

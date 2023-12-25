@@ -24,7 +24,7 @@ export default function HomePage() {
 
             <VideoSection />
 
-            <WorkOutCategory />
+            {/* <WorkOutCategory /> */}
 
             <OurStory />
 

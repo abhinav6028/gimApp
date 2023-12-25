@@ -64,10 +64,11 @@ export default function MobileBanner() {
 
             <Grid container>
 
-                <Grid container xs={8}
+                <Grid container xs={12}
                     component='img'
                     src="Assets/Home/img1.png"
                     sx={{
+                        // display: 'flex',
                         bgcolor: '', justifyContent: 'center', alignItems: 'center',
                         // mt: -4,
                         height: { xs: 340, sm: 580 },
@@ -79,7 +80,7 @@ export default function MobileBanner() {
 
                 <Grid container xs={4} sx={{ alignItems: 'center', justifyContent: 'space-around', flexDirection: 'column' }}>
 
-                    {
+                    {/* {
                         items.map((data, index) =>
 
                             <Grid sx={{
@@ -100,20 +101,9 @@ export default function MobileBanner() {
                                 }}>
 
                                     <Grid container sx={{ height: '100%', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', bgcolor: 'transparent' }}>
-                                        {/* 
-                                        <Box
-                                            component='img'
-                                            src='Assets/Icons/Treadmill.png'
-                                            sx={{
-                                                width: { xs: 25, sm: 35 },
-                                                height: { xs: 25, sm: 35 },
-                                                bgcolor: 'transparent'
-
-                                            }}
-                                        /> */}
+                                        
 
                                         <Box sx={{
-                                            // mt: { xs: 0, sm: 0.5 },
                                             bgcolor: 'transparent', textAlign: 'center', display: 'flex', alignItems: 'center'
                                         }}>
                                             <H6 fontWeight='semibold' >{data.title}</H6>
@@ -128,11 +118,11 @@ export default function MobileBanner() {
 
 
                         )
-                    }
+                    } */}
 
-                    <Button my={0.5}>Subscribe</Button>
 
                 </Grid>
+                <Button my={5} ml={3}> Subscribe</Button>
 
             </Grid>
 
