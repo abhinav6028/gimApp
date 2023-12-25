@@ -138,7 +138,7 @@ export default function SignUpForm(props) {
             // required:''
         },
         {
-            fieldName: "dateOfBirth",
+            fieldName: "Date of Birth",
             id: 'dateOfBirth',
             type: 'date',
             inputType: "text"
@@ -158,12 +158,12 @@ export default function SignUpForm(props) {
             required: true
 
         },
-        {
-            fieldName: "Watsap number ",
-            id: 'whatsApp',
-            type: 'number',
-            inputType: "text"
-        },
+        // {
+        //     fieldName: "Watsap number ",
+        //     id: 'whatsApp',
+        //     type: 'number',
+        //     inputType: "text"
+        // },
         // {
         //     fieldName: "Gender",
         //     id: 'gender',
@@ -189,12 +189,12 @@ export default function SignUpForm(props) {
             type: 'text',
             inputType: "text"
         },
-        {
-            fieldName: "Place",
-            id: 'place',
-            type: 'text',
-            inputType: "text"
-        },
+        // {
+        //     fieldName: "Place",
+        //     id: 'place',
+        //     type: 'text',
+        //     inputType: "text"
+        // },
         {
             fieldName: "Password",
             id: 'password',
