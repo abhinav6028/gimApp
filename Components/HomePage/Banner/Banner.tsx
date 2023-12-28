@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Typography } from '@mui/material'
 import { SECONDARY_COLOUR, PRIMARY_COLOUR } from '@/utils/colours';
 import Button from '@/Components/UI/Button/Button';
 import { H1, H2, H5, H6 } from '@/Components/UI/Typography/Typography';
@@ -46,13 +46,14 @@ export default function Banner() {
 
             <Grid xs={6} md={4}
                 component="img"
-                src="Assets/Home/img1.png"
+                src="Assets/Home/gimImage2.png"
                 sx={{
                     ml: { xs: 'auto', md: 3, lg: 3 },
                     // width: '600px',
                     // height: '600px'
                     // bgcolor: 'blue',
                     // boxShadow: '4px 4px 4px 4px'
+                    mt: { md: '30px' }
                 }}
             />
 
@@ -62,8 +63,13 @@ export default function Banner() {
             }}>
 
                 <H1 ml='auto' fontWeight="bold" color={PRIMARY_COLOUR}>WORKOUT</H1>
-                <H2 ml='auto' fontWeight="bold" colour='red' mt={-11}>PLANS</H2>
-
+                {/* <H2 ml='auto' fontWeight="bold" mt={-11} sx={{ color: 'red' }}>PLANS</H2> */}
+                <Typography
+                    variant="h2"
+                    style={{ color: 'gray', background: 'none', fontWeight: 'bold', marginLeft: 'auto', fontSize: '100px', marginTop: '-20px', marginBottom: '10px', textAlign: 'end' }}
+                >
+                    PLANS
+                </Typography>
 
                 <Box sx={{
                     position: 'absolute',

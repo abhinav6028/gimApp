@@ -33,13 +33,13 @@ export default function page() {
     return (
 
         <Grid container sx={{
-            bgcolor: BG_COLOUR,
+            // bgcolor: BG_COLOUR,
             // mt: -5
         }}>
 
             <Grid container sx={{
                 // mt: { xs: 8, lg: 8 },
-                bgcolor: BG_COLOUR
+                // bgcolor: BG_COLOUR
             }}>
 
                 {

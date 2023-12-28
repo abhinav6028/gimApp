@@ -106,7 +106,7 @@ export default function ContactUs() {
 
                     }}>
                         <Box>
-                            <H5 fontFamily='Oxygen' color='grey'>Email</H5>
+                            <H5 fontFamily='Oxygen' color='grey'>Mail Us Here:</H5>
                         </Box>
 
                         <Box sx={{

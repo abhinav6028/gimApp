@@ -82,8 +82,9 @@ export default function page() {
     function handleCheckout(price: { price: any }) {
         // alert('subscription price is  ' + price.price);
 
-        axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
-            // axios.post('http://localhost:4000/payment/checkout', { price }, { headers }).then((res) => {
+        // axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
+        axios.post('http://localhost:4000/payment/checkout', { price }, { headers }).then((res) => {
+            // axios.post('https://api.fitpeps.com/phonepe/initiate-payment', { price }, { headers }).then((res) => {
             // axios.post('http://localhost:4000/phonepe/initiate-payment', { price }, { headers }).then((res) => {
             console.log(res, '333333333333333')
             router.push(res.data.url)
@@ -289,6 +290,11 @@ export default function page() {
                                 </label>
                             </Grid>
                             {/* : null} */}
+
+
+                            {/* 99 package is turned off */}
+
+
                             {/* <Grid
                                 onClick={() => handleCheckout({ price: 99 })}
                                 sx={{ backgroundColor: '#FCCB06', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: 'pointer' }}

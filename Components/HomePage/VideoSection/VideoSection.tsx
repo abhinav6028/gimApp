@@ -120,6 +120,7 @@ export default function VideoSection() {
                                             transition: '0.5s'
                                         },
                                     }}>
+                                        {/* {console.log(data.image)} */}
                                         <Grid container sx={{
                                             height: '100%',
                                             backgroundImage: `url('Assets/Home/darkrectangle.png')`,

@@ -64,14 +64,14 @@ export default function page() {
 
 
     return (
-        <Grid xs={10} container sx={{ bgcolor: BG_COLOUR }}>
+        <Grid xs={10} container >
 
 
             <Grid container lg={7} sx={{ justifyContent: 'center' }}>
 
                 <Box sx={{
                     bgcolor: '', height: 'fit-content', width: '100%',
-                    mt: 15
+                    mt: 15,
                 }}>
 
                     <Grid container bgcolor='' sx={{ justifyContent: 'center', alignItems: '' }}>
