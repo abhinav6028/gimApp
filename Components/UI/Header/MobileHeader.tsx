@@ -66,12 +66,12 @@ export default function MobileHeader() {
         py: 1,
         position: "fixed",
         zIndex: "110", top: "0", left: "0",
-        bgcolor: BG_COLOUR
+        // bgcolor: BG_COLOUR
         // bgcolor: { xs: 'red', sm: 'blue', md: 'green', lg: 'pink', }
       }} >
 
         <Box position="fixed" left="0" sx={{
-          bgcolor: BG_COLOUR
+          // bgcolor: BG_COLOUR
         }}>
 
           {menu ? <CloseIcon sx={{ ml: 2, color: "#513328", fontSize: { xs: '2rem' } }} onClick={() => setMenu(!menu)} /> :
@@ -85,7 +85,7 @@ export default function MobileHeader() {
           // style={{ cursor: 'pointer' }}
           component="img"
           sx={{
-            bgcolor: BG_COLOUR,
+            // bgcolor: BG_COLOUR,
             // pt: 1,
             pb: 1,
             height: 50,
@@ -103,7 +103,7 @@ export default function MobileHeader() {
         transition: "0.5s",
         width: "100%", height: "fit-content",
         position: "fixed", zIndex: "100", left: "0%", top: menu ? "50px" : "-40%",
-        bgcolor: BG_COLOUR
+        // bgcolor: BG_COLOUR
         // bgcolor: "red"
 
       }}>
@@ -111,7 +111,7 @@ export default function MobileHeader() {
         {
           navbarItems.map((data: any, index: any) =>
 
-            <Box key={index} sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2, bgcolor: BG_COLOUR }}>
+            <Box key={index} sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 2 }}>
 
               <Box onClick={MenuBar} sx={{ display: "flex", justifyContent: "center", alignItems: "center", bgcolor: 'red', }}>
 

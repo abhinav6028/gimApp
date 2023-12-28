@@ -47,26 +47,27 @@ export default function MobileBanner() {
     ]
     return (
         <Grid container sx={{
-            display: { xs: '', md: 'none' },
+            display: { xs: 'flex', md: 'none' }, justifyContent: 'center',
             overflow: 'none', bgcolor: '',
-            mt: { xs: 10 }
+            mt: { xs: 10 }, textAlign: 'center'
         }}>
 
             <Box sx={{
-                ml: { xs: 'auto', sm: 21, md: 7 },
+                ml: { sm: 21, md: 7 },
                 mr: 3,
                 bgcolor: '', height: 'fit-content',
-                // ml:'auto'
+                // ml:'auto',
+
             }}>
                 <H1 fontWeight="bold" color={PRIMARY_COLOUR}>WORKOUT</H1>
                 <H2 ml='auto' fontWeight="bold" colour='' mt={-11}>PLANS</H2>
             </Box>
 
-            <Grid container>
+            <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
 
-                <Grid container xs={12}
+                <Grid container xs={10}
                     component='img'
-                    src="Assets/Home/img1.png"
+                    src="Assets/Home/gimImage2.png"
                     sx={{
                         // display: 'flex',
                         bgcolor: '', justifyContent: 'center', alignItems: 'center',
@@ -78,9 +79,9 @@ export default function MobileBanner() {
 
                 />
 
-                <Grid container xs={4} sx={{ alignItems: 'center', justifyContent: 'space-around', flexDirection: 'column' }}>
+                {/* <Grid container xs={4} sx={{ alignItems: 'center', justifyContent: 'space-around', flexDirection: 'column' }}> */}
 
-                    {/* {
+                {/* {
                         items.map((data, index) =>
 
                             <Grid sx={{
@@ -121,8 +122,8 @@ export default function MobileBanner() {
                     } */}
 
 
-                </Grid>
-                <Button my={5} ml={3}> Subscribe</Button>
+                {/* </Grid> */}
+                <Button my={5} > Subscribe</Button>
 
             </Grid>
 

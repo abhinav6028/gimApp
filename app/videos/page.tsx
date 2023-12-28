@@ -72,7 +72,7 @@ export default function page() {
         setShowVideo(index);
     };
     return (
-        <Grid container sx={{ bgcolor: BG_COLOUR, justifyContent: 'center' }}>
+        <Grid container sx={{ justifyContent: 'center' }}>
 
             <Header />
 
@@ -150,7 +150,8 @@ export default function page() {
                                     my: { xs: 3, lg: 3 },
                                     width: '100%',
                                 }}>
-                                    <H4 fontWeight="bold" textAlign='start'>{data.title} {data.dayNo}</H4>
+                                    {/* <H4 fontWeight="bold" textAlign='start'>{data.title} {data.dayNo}</H4> */}
+                                    <H4 fontWeight="bold" textAlign='start'>{data.title} </H4>
                                 </Box>
 
 

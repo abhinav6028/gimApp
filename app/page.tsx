@@ -11,11 +11,11 @@ import { Suspense } from 'react'
 
 const page = () => {
 
-  
+
   return (
 
     <Suspense fallback={<p>Loading feed...</p>}>
-      <Grid bgcolor={BG_COLOUR} >
+      <Grid bgcolor={'white'} >
 
         <Header />
 
