@@ -216,7 +216,7 @@ export default function ContactUs() {
 
                         <Grid container xs={5} lg={4} sx={{
                             bgcolor: '', justifyContent: 'space-between', my: 2
-                        }}>
+                        }} >
 
                             {
                                 Icons.map((data, index) =>
@@ -239,6 +239,7 @@ export default function ContactUs() {
                         </Grid>
 
                     </Grid>
+                    <span style={{ marginBottom: '10px' }}>By JnK Infotainment</span>
 
                 </Grid>
 
