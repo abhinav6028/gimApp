@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import { H4, H5 } from '../Typography/Typography';
 import Styles from '../../../Styles/contactus.module.css'
 import { FormEvent, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 
 export default function ContactUs() {
@@ -11,7 +12,7 @@ export default function ContactUs() {
     const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [message, setMessage] = React.useState('')
-
+    const router = useRouter()
 
     const Icons = [
         {
@@ -239,7 +240,6 @@ export default function ContactUs() {
                         </Grid>
 
                     </Grid>
-                    <span style={{ marginBottom: '10px' }}>By JnK Infotainment</span>
 
                 </Grid>
 

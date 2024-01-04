@@ -22,7 +22,6 @@ const page = () => {
         <MobileHeader />
 
         <HomePage />
-
       </Grid >
     </Suspense>
 
