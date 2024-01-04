@@ -240,15 +240,7 @@ export default function ContactUs() {
                         </Grid>
 
                     </Grid>
-                    <Grid sx={{ display: 'flex', justifyContent: 'space-around', flexDirection: 'column', width: '100%' }}>
 
-                        <a onClick={() => router.push('privacy-policy')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Privacy Policy</a>
-                        <a onClick={() => router.push('terms-and-conditions')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Terms and conditions</a>
-                        <a onClick={() => router.push('refund-and-return-policy')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Return and Refund Policy</a>
-                        <a onClick={() => router.push('shipping-policy')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Shipping</a>
-
-                    </Grid>
-                    <a style={{ marginBottom: '30px' }}>By JnK Infotainment</a>
                 </Grid>
 
             </Grid>

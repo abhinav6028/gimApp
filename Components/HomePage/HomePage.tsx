@@ -9,6 +9,7 @@ import ClientSays from './ClientSays/ClientSays';
 import ContactUs from '../UI/ContactUs/ContactUs';
 import OurStory from './OurStory/OurStory';
 import MobileBanner from './Banner/MobileBanner';
+import Footer from '../Footer/Footer';
 
 export default function HomePage() {
 
@@ -32,6 +33,7 @@ export default function HomePage() {
 
             <ContactUs />
 
+            <Footer />
         </Grid>
     )
 }
