@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import { H4, H5 } from '../Typography/Typography';
 import Styles from '../../../Styles/contactus.module.css'
 import { FormEvent, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 
 export default function ContactUs() {
@@ -11,7 +12,7 @@ export default function ContactUs() {
     const [name, setName] = React.useState('')
     const [email, setEmail] = React.useState('')
     const [message, setMessage] = React.useState('')
-
+    const router = useRouter()
 
     const Icons = [
         {
@@ -239,8 +240,15 @@ export default function ContactUs() {
                         </Grid>
 
                     </Grid>
-                    <span style={{ marginBottom: '10px' }}>By JnK Infotainment</span>
+                    <Grid sx={{ display: 'flex', justifyContent: 'space-around', flexDirection: 'column', width: '100%' }}>
 
+                        <a onClick={() => router.push('privacy-policy')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Privacy Policy</a>
+                        <a onClick={() => router.push('terms-and-conditions')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Terms and conditions</a>
+                        <a onClick={() => router.push('refund-and-return-policy')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Return and Refund Policy</a>
+                        <a onClick={() => router.push('shipping-policy')} style={{ marginBottom: '10px', cursor: 'pointer' }}>Shipping</a>
+
+                    </Grid>
+                    <a style={{ marginBottom: '30px' }}>By JnK Infotainment</a>
                 </Grid>
 
             </Grid>
