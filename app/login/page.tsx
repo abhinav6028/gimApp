@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import Cookies from 'js-cookie';
 import GoogleAuthButton from '@/Components/GoogleAuthButton/GoogleAuthButton';
+import { message } from 'antd';
 
 
 export default function page() {
@@ -36,6 +37,8 @@ export default function page() {
                 if (res.data.success) {
                     Cookies.set('auth_token', res.data.accessTocken)
                     router.back()
+                } else {
+                    message.error(res.data.message)
                 }
 
             }).catch((err) => {
