@@ -1,16 +1,37 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Box } from '@mui/material'
 import Button from '../Button/Button';
-import { H5 } from '../Typography/Typography';
+import { H5, H6 } from '../Typography/Typography';
 //import { BG_COLOUR } from '@/utils/colours';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
 import { signOut } from 'next-auth/react'
-import { message } from 'antd';
+import { Typography, message } from 'antd';
+import axios from 'axios';
+import { BASE_URL } from '@/utils/urls';
 
 export default function Header() {
+    // const [fetchedData, setFetchedData] = useState()
+
+    // useEffect(() => {
+    //     axios.get(BASE_URL + 'auth/profile', {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             Authorization: 'Bearer ' + token
+    //         }
+    //     }).then((response) => {
+    //         setFetchedData(response.data.result);
+
+    //     }).catch((error) => {
+    //         console.log(error, '0000000')
+    //     })
+
+
+    // }, []);
+
+
 
     const token = Cookies.get('auth_token')
 
@@ -54,7 +75,14 @@ export default function Header() {
                 router.push(data.path)
             }
         } else {
-            router.push('/login')
+
+            if (data.name === 'Videos') {
+                message.error('Please login to continue')
+                router.push('/login')
+            }
+            else {
+                router.push(data.path)
+            }
         }
     }
 
@@ -81,7 +109,7 @@ export default function Header() {
                             onClick={() => videoTabOnClick(data)}
                             sx={{ mr: { xs: 1.5, md: 2.8 } }}>
 
-                            <H5 cursor='pointer' fontFamily='Oxygen' letterSpacing={1.2}>{data.name}</H5>
+                            <Typography style={{ cursor: 'pointer', fontWeight: '600', fontSize: '16px' }}>{data.name}</Typography>
 
                         </Box>
 
@@ -90,7 +118,7 @@ export default function Header() {
 
                 <Box sx={{ display: token ? 'none' : 'flex' }}>
 
-                    <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3}>Sign Up</Button>
+                    <Button onClick={() => { router.push('/signup') }} btnName='signup' mr={3} >Sign Up</Button>
 
                     <Button mr={5} onClick={() => { router.push('/login') }} btnName='login'>Log In</Button>
 
@@ -101,7 +129,7 @@ export default function Header() {
                         :
                         <Button
                             onClick={() => router.push('/subscription')}
-                            style={{ display: fetchedData?.client?.isActive ? 'none' : 'flex' }}
+                            style={{ display: fetchedData?.client?.isActive ? 'none' : 'flex', fontSize: '16px', }}
                             mr={3}
                         >
                             Subscribe{fetchedData?.client?.isActive}

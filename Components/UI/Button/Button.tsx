@@ -31,7 +31,7 @@ export default function Button(props: any) {
       }}>
 
       <button type={btnType ? 'submit' : 'button'} onClick={onClick} style={{
-        width: '100%', height: '100%', backgroundColor: bgcolor ? bgcolor : 'transparent', border: 'none', outline: 'none', cursor: 'pointer', fontSize: '15px', fontWeight: 'bold',
+        width: '100%', height: '100%', backgroundColor: bgcolor ? bgcolor : 'transparent', border: 'none', outline: 'none', cursor: 'pointer', fontSize: '14px', fontWeight: 'bold',
 
       }}>
 
