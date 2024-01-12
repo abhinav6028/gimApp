@@ -5,6 +5,7 @@ import { H4, H5 } from '../Typography/Typography';
 import Styles from '../../../Styles/contactus.module.css'
 import { FormEvent, useState } from "react";
 import { useRouter } from 'next/navigation';
+import { PRIMARY_COLOUR } from '@/utils/colours';
 
 
 export default function ContactUs() {
@@ -155,6 +156,7 @@ export default function ContactUs() {
                                         name="name"
                                         placeholder='NAME'
                                         className={Styles.input_lable}
+                                        style={{ backgroundColor: 'white' }}
                                         onChange={(e) => setName(e.target.value)}
                                         value={name}
                                     />
@@ -170,6 +172,7 @@ export default function ContactUs() {
                                     <input type="text"
                                         name="email"
                                         placeholder='EMAIL'
+                                        style={{ backgroundColor: 'white' }}
                                         className={Styles.input_lable}
                                         onChange={(e) => setEmail(e.target.value)}
                                         value={email}
@@ -189,6 +192,7 @@ export default function ContactUs() {
                                         name="message"
                                         rows={4}
                                         cols={50}
+                                        style={{ backgroundColor: 'white' }}
                                         className={Styles.input_lable}
                                         placeholder='MESSAGE'
                                         onChange={(e) => setMessage(e.target.value)}
@@ -201,7 +205,7 @@ export default function ContactUs() {
 
                                 <Box sx={{ width: '90%', my: 2 }}>
 
-                                    <Button ml="auto" bgcolor='#FFFFFF'
+                                    <Button ml="auto" bgcolor={PRIMARY_COLOUR}
                                         hoverColour="transparent" hoverBorderRadius='7' btnType='submit'
                                     > SEND </Button>
 

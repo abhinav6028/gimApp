@@ -12,6 +12,7 @@ import React, { useState } from 'react'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
 import axios from 'axios'
 import Cookies from 'js-cookie'
+import { message } from 'antd'
 
 
 export default function page() {
@@ -46,41 +47,12 @@ export default function page() {
     ]
 
     const headers = {
-        'Authorization': `Bearer ${token}`, // Replace 'your_token' with your actual token
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
     };
 
 
-    // const handlePaymentCheckout = async () => {
-    //     try {
-    //         const response = await axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers });
-    //         console.log(response.data); // Handle the response data here
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // };
-
-
-    // const handleCheckout = () => {
-
-    //     axios.post('https://api.fitpeps.com/payment/checkout', {}, { headers }).then((res) =>
-
-    //         console.log("????????????????????", res)
-
-    //     )
-
-    //     alert('?????stripe hit')
-
-    // }
-
-    // const hey = () => {
-
-    //     alert('/////////////////')
-
-    // }
-
     function handleCheckout(price: { price: any }) {
-        // alert('subscription price is  ' + price.price);
 
         // axios.post('https://api.fitpeps.com/payment/checkout', { price }, { headers }).then((res) => {
         // axios.post('http://localhost:4000/payment/checkout', { price }, { headers }).then((res) => {
@@ -90,6 +62,7 @@ export default function page() {
             router.push(res.data.url)
         }).catch((err) => {
             console.log(err, '000000001111111111')
+            message.error('Something went wrong')
         })
 
 

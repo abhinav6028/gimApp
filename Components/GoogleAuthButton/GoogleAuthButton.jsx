@@ -11,7 +11,6 @@ function GoogleAuthButton() {
 
     const router = useRouter()
     const session = useSession()
-    console.log(session, '************************')
     useEffect(() => {
 
         if (session && session.status === 'authenticated') {
@@ -20,20 +19,15 @@ function GoogleAuthButton() {
                     username: session.data.user?.email,
                     name: session.data.user?.name
                 }).then((res) => {
-                    console.log(res, 'OOOOOOOOOOOOOOO')
                     Cookies.set('auth_token', res.data.accessTocken)
-                    // if (Cookies.get('next-auth.session-token')) {
                     router.push('/')
                     message.success(`Hi, Welcome ${session.data.user?.name}`)
-                    // } else {
-                    //     message.error('cookie is missing..')
-                    // }
+
                 }).catch((err) => {
                     console.log(err)
 
                 })
-                // Cookies.set('auth_token', session.data.user?.email)
-                // router.push('/')
+
             }).catch((err) => {
                 console.log(err)
             })
