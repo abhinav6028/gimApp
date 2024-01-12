@@ -109,7 +109,7 @@ export default function VideoSection() {
                                 }} key={index} >
 
 
-                                    <Box onClick={data?.client?.isActive === false ? () => message.error('Please Login to Continue..') : () => router.push(`/videos?languageId=22&&categoryId=${data.id}`)} sx={{
+                                    <Box onClick={data?.client?.isActive === false ? () => message.error('Please Subscribe to Continue..') : () => router.push(`/videos?languageId=22&&categoryId=${data.id}`)} sx={{
                                         width: { xs: 270, sm: 230, md: 250, lg: 250 },
                                         height: { xs: 340, sm: 320, md: 310, lg: 330 },
                                         borderRadius: 5,
