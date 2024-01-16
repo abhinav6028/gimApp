@@ -65,15 +65,15 @@ export default function MobileBanner() {
                 // ml:'auto',
 
             }}>
-                <H2 fontWeight="bold" color={PRIMARY_COLOUR}>EVERY STEPS</H2>
-                <H2 ml='auto' fontWeight="bold" colour='' mt={-11}>COUNTS</H2>
+                <H2 fontWeight="bold" color={PRIMARY_COLOUR}>EVERY STEP</H2>
+                <H2 ml='auto' fontWeight="bold" colour='' mt={-11}>COUNTS...</H2>
             </Box>
 
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
 
                 <Grid container xs={10}
                     component='img'
-                    src="Assets/Home/gimImage2.png"
+                    src="Assets/Home/gimImage6.png"
                     sx={{
                         // display: 'flex',
                         bgcolor: '', justifyContent: 'center', alignItems: 'center',

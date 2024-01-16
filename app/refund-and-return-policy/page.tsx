@@ -4,8 +4,8 @@ function page() {
 
     const emailAddress = 'contact@fitpeps.com'
     return (
-        <div style={{ padding: '40px', lineHeight: 1.5 }}>
-            <div>
+        <div style={{ padding: '40px', lineHeight: 2 }}>
+            {/* <div>
                 <img src="/Assets/logo.png" alt="" style={{ width: '200px', }} />
             </div>
             <div style={{ marginTop: '80px' }} className='space-y-5'>
@@ -94,27 +94,41 @@ function page() {
                     Contact us at {emailAddress} for questions related to refunds and returns.
                 </p>
                 <p style={{ marginTop: 10 }}></p>
+            </div> */}
+
+
+
+            <div className="container mx-auto my-8 p-8 bg-white rounded shadow-lg">
+
+                <h1 className="text-3xl font-semibold mb-4">Refund and Return Policy</h1>
+
+                <p className="mb-4">Last updated: 1/1/2024</p>
+
+                <p className="mb-8">Thank you for choosing Fitpeps. We appreciate your subscription and support. Please be advised that all subscription purchases made on our platform are non-refundable and non-returnable.</p>
+
+                <h2 className="text-2xl font-semibold mb-4">1. No Refunds</h2>
+
+                <p className="mb-4">1.1 <strong>Subscription Payments:</strong> All payments for subscription plans are non-refundable. Once a payment is processed, it cannot be reversed or refunded, regardless of your usage of our services during the subscription period.</p>
+
+                <h2 className="text-2xl font-semibold mb-4">2. No Returns</h2>
+
+                <p className="mb-8">2.1 <strong>Digital Products:</strong> As our services are digital and provided on a subscription basis, we do not accept returns or exchanges. Please review our offerings carefully before making a purchase.</p>
+
+                <h2 className="text-2xl font-semibold mb-4">3. Contact Information</h2>
+
+                <p className="mb-4">If you have any questions or concerns regarding our No Refund and Return Policy, please contact our customer support team at:</p>
+
+                <p className="mb-8">
+                    jnk infotainment<br />
+                    Email: <a href="mailto:fitpeps@gmail.com">fitpeps@gmail.com</a><br />
+                    Phone: +919600204302
+                </p>
+
+                <h2 className="text-2xl font-semibold mb-4">4. Changes to the Policy</h2>
+
+                <p className="mb-8">We reserve the right to update or modify this No Refund and Return Policy at any time. Changes will be effective immediately upon posting to the website.</p>
+
             </div>
-
-
-
-
-            {/* <div style={{ marginTop: '80px' }} className='space-y-5'>
-                <h4 style={{ fontSize: '30px', }}></h4>
-                <p style={{ marginTop: '20px' }} ></p>
-                <p style={{ marginTop: 10 }}></p>
-            </div> */}
-            {/* <div style={{ marginTop: '80px' }} className='space-y-5'>
-                <h4 style={{ fontSize: '30px', }}></h4>
-                <p style={{ marginTop: '20px' }} ></p>
-                <p style={{ marginTop: 10 }}></p>
-                <ul style={{ margin: 40 }}>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                </ul>
-            </div> */}
         </div>
     )
 }

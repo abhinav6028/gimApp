@@ -46,11 +46,11 @@ export default function Banner() {
 
             <Grid xs={6} md={4}
                 component="img"
-                src="Assets/Home/gimImage5.png"
+                src="Assets/Home/gimImage6.png"
                 sx={{
                     ml: { xs: 'auto', md: 3, lg: 3 },
-                    // width: '600px',
-                    // height: '600px'
+                    width: '400px',
+                    height: '650px',
                     // bgcolor: 'blue',
                     // boxShadow: '4px 4px 4px 4px'
                     mt: { md: '30px' }
@@ -59,16 +59,16 @@ export default function Banner() {
 
             <Grid xs={11} md={8} lg={6.5} sx={{
                 justifyContent: 'end', alignItems: 'end', ml: -8,
-                bgcolor: 'transparent'
+                bgcolor: 'transparent', mt: 10
             }}>
 
-                <H2 ml='auto' fontWeight="bold" color={PRIMARY_COLOUR}>EVERY STEPS</H2>
+                <H2 ml='auto' fontWeight="bold" color={PRIMARY_COLOUR}>EVERY STEP</H2>
                 {/* <H2 ml='auto' fontWeight="bold" mt={-11} sx={{ color: 'red' }}>PLANS</H2> */}
                 <Typography
                     variant="h2"
                     style={{ color: 'gray', background: 'none', fontWeight: 'bold', marginLeft: 'auto', fontSize: '100px', marginTop: '-20px', marginBottom: '10px', textAlign: 'end' }}
                 >
-                    COUNTS
+                    COUNTS...
                 </Typography>
 
                 <Box sx={{
@@ -81,15 +81,18 @@ export default function Banner() {
 
                 </Box>
 
+
                 <Grid container sx={{
                     ml: { md: 6, lg: 20 },
                     mb: { md: 'auto', lg: 'auto' },
+                    mt: { md: 'auto', lg: 10 },
                     justifyContent: 'space-around', alignItems: 'center',
                     bgcolor: '',
 
                 }}>
 
-                    {
+
+                    {/* {
 
                         items.map((data, index) =>
 
@@ -128,14 +131,13 @@ export default function Banner() {
                             </Box>
 
                         )
-                    }
+                    } */}
 
                     {fetchedData?.client?.isActive === false || !fetchedData || new Date(fetchedData?.client?.expireOn) >= Date.now() ? <Button
                         display={fetchedData?.IsActive && 'none'}
                         onClick={() => router.push('/subscription')}
                         letterSpacing={1.2} fontFamily="Oxygen"
                         mt='auto' >Subscribe</Button> : null}
-
                 </Grid>
 
             </Grid>
