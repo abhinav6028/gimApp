@@ -17,7 +17,7 @@ export const H1 = (props: any) => {
 
 export const H2 = (props: any) => {
 
-    const { fontWeight, ml, mr, mt, cursor, hover, colour } = props;
+    const { fontWeight, ml, mr, mt, cursor, hover, color } = props;
 
     return (
         <Typography sx={{
@@ -25,7 +25,7 @@ export const H2 = (props: any) => {
             fontSize: { xs: 50, sm: 90, md: 120 },
             width: 'fit-content', mr: mr, cursor: cursor, fontWeight: 'bold', ml: ml, mb: 5, height: 'fit-content',
             mt: { xs: mt - (-8), sm: mt - (-5), md: mt },
-            color: '#ffff', fontFamily: 'Outfit',
+            color: color ? color : '#ffff', fontFamily: 'Outfit',
 
             // fontFamily:'Outfit'
             // bgcolor:'green'

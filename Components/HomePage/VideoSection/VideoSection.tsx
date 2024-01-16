@@ -109,7 +109,7 @@ export default function VideoSection() {
                                 }} key={index} >
 
 
-                                    <Box onClick={data?.client?.isActive === false ? () => message.error('Please Login to Continue..') : () => router.push(`/videos?languageId=22&&categoryId=${data.id}`)} sx={{
+                                    <Box onClick={data?.client?.isActive === false ? () => message.error('Please Subscribe to Continue..') : () => router.push(`/videos?languageId=22&&categoryId=${data.id}`)} sx={{
                                         width: { xs: 270, sm: 230, md: 250, lg: 250 },
                                         height: { xs: 340, sm: 320, md: 310, lg: 330 },
                                         borderRadius: 5,
@@ -169,7 +169,7 @@ export default function VideoSection() {
                 </Grid>
 
             </Grid>
-            {data?.client?.isActive === false || !data ?
+            {data?.client?.isActive === false || !data || new Date(data?.client?.expireOn) >= Date.now() ?
                 <Grid container sx={{ mt: 5, justifyContent: 'center', alignItems: 'center' }}>
                     <Button letterSpacing={1.2} fontFamily="Oxygen"
                         display={data?.IsActive && 'none'}

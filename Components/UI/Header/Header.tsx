@@ -71,7 +71,10 @@ export default function Header() {
         if (token) {
             if (data.name === 'Videos' && fetchedData?.client?.isActive === false) {
                 message.error('Please Subscribe to Continue..')
-            } else {
+            } else if (data.name === 'Videos' && new Date(fetchedData?.client?.expireOn) >= Date.now()) {
+                message.error('Subscription expired.. Kindly renew subscription to continue')
+            }
+            else {
                 router.push(data.path)
             }
         } else {

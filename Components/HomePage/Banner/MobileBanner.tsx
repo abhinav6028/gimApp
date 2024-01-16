@@ -5,10 +5,16 @@ import { Typography, Grid, Box } from "@mui/material";
 import { H1, H2, H5, H6, } from '@/Components/UI/Typography/Typography';
 import { SECONDARY_COLOUR, PRIMARY_COLOUR } from '@/utils/colours';
 import Button from '@/Components/UI/Button/Button';
+import { useQueryFetchByHeaders } from '@/hooks/useFetchData';
+import { useRouter } from 'next/navigation';
 
 
 
 export default function MobileBanner() {
+
+    const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
+    const router = useRouter()
+
     // const items = [
     //     {
     //         imgUrl: 'Assets/Icons/Treadmill.png',
@@ -59,8 +65,8 @@ export default function MobileBanner() {
                 // ml:'auto',
 
             }}>
-                <H1 fontWeight="bold" color={PRIMARY_COLOUR}>WORKOUT</H1>
-                <H2 ml='auto' fontWeight="bold" colour='' mt={-11}>PLANS</H2>
+                <H2 fontWeight="bold" color={PRIMARY_COLOUR}>EVERY STEPS</H2>
+                <H2 ml='auto' fontWeight="bold" colour='' mt={-11}>COUNTS</H2>
             </Box>
 
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -123,7 +129,10 @@ export default function MobileBanner() {
 
 
                 {/* </Grid> */}
-                <Button my={5} > Subscribe</Button>
+                {/* <Button my={5} > Subscribe</Button> */}
+                {fetchedData?.client?.isActive === false || !fetchedData || new Date(fetchedData?.client?.expireOn) >= Date.now() ? <Button
+                    onClick={() => router.push('/subscription')}
+                    my={5} >Subscribe</Button> : null}
 
             </Grid>
 
