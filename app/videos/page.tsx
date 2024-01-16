@@ -33,7 +33,12 @@ export default function page() {
         axios.get(`${BASE_URL}auth/profile`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
             console.log(res, 'ressssssssssssssssss')
             if (res?.data?.result?.client?.isActive === false) {
+                // if (res?.data?.result?.client?.expire_on < Date.now()) {
                 message.error('Please Subscribe to Continue..')
+                router.push('/subscription')
+                // }
+            } else if (new Date(res?.data?.result?.client?.expireOn) >= Date.now()) {
+                message.error('Subscription expired, Kindly subscribe to continue')
                 router.push('/')
             }
 

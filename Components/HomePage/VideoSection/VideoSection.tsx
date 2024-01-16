@@ -169,7 +169,7 @@ export default function VideoSection() {
                 </Grid>
 
             </Grid>
-            {data?.client?.isActive === false || !data ?
+            {data?.client?.isActive === false || !data || new Date(data?.client?.expireOn) >= Date.now() ?
                 <Grid container sx={{ mt: 5, justifyContent: 'center', alignItems: 'center' }}>
                     <Button letterSpacing={1.2} fontFamily="Oxygen"
                         display={data?.IsActive && 'none'}

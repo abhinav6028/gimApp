@@ -6,6 +6,7 @@ import GoogleButton from 'react-google-button'
 import axios from 'axios'
 import { BASE_URL } from '@/utils/urls'
 import { useRouter } from 'next/navigation'
+import './style.css'
 
 function GoogleAuthButton() {
 
@@ -38,8 +39,11 @@ function GoogleAuthButton() {
         <GoogleButton
             onClick={() => signIn("google")}
             type='dark'
-            style={{ marginTop: '35px', width: '400px', fontWeight: 'bold', color: '#4285F4' }}
+            style={{
+                marginTop: '35px', width: '400px', fontWeight: 'bold', color: '#4285F4',
+            }}
             label='Continue with Google'
+
         >Continue with google</GoogleButton>
     )
 }
