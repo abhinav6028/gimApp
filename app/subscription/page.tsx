@@ -259,7 +259,7 @@ export default function page() {
                             >
                                 {/* <label htmlFor="" style={{ transform: 'rotate(-30deg)', backgroundColor: 'greenyellow', fontSize: '12px', position: 'absolute', left: [{ xs: '10vw' }, { md: '40vw' }], color: 'goldenrod', fontWeight: '20px' }}>Grab Now!!</label> */}
                                 <label htmlFor="radio1" style={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: isOffer ? 'black' : 'slategray', textDecoration: isOffer ? null : 'line-through' }}>
-                                    $999 per year
+                                    Rs.999 per year
                                 </label>
                             </Grid>
                             {/* : null} */}
@@ -273,7 +273,7 @@ export default function page() {
                                 sx={{ backgroundColor: '#FCCB06', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: 'pointer' }}
                             >
                                 <label htmlFor="radio2" style={{ backgroundColor: '#FCCB06', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: 'black' }}>
-                                    $99 per month
+                                    Rs.99 per month
                                 </label>
                             </Grid> */}
                         </Grid>
