@@ -14,7 +14,8 @@ export default function MobileBanner() {
 
     const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
     const router = useRouter()
-
+    const expiryDateObject = new Date(fetchedData?.client?.expireOn);
+    expiryDateObject.setHours(23, 59, 59, 999);
     // const items = [
     //     {
     //         imgUrl: 'Assets/Icons/Treadmill.png',
@@ -130,7 +131,7 @@ export default function MobileBanner() {
 
                 {/* </Grid> */}
                 {/* <Button my={5} > Subscribe</Button> */}
-                {fetchedData?.client?.isActive === false || !fetchedData || new Date(fetchedData?.client?.expireOn) >= Date.now() ? <Button
+                {fetchedData?.client?.isActive === false || !fetchedData || Date.now() > expiryDateObject ? <Button
                     onClick={() => router.push('/subscription')}
                     my={5} >Subscribe</Button> : null}
 

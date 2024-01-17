@@ -32,12 +32,14 @@ export default function page() {
         // const data = useQueryFetchByHeaders('auth/profile').fetchedData
         axios.get(`${BASE_URL}auth/profile`, { headers: { Authorization: `Bearer ${token}` } }).then((res) => {
             console.log(res, 'ressssssssssssssssss')
+            const expiryDateObject = new Date(res?.data?.result?.client?.expireOn);
+            expiryDateObject.setHours(23, 59, 59, 999);
             if (res?.data?.result?.client?.isActive === false) {
                 // if (res?.data?.result?.client?.expire_on < Date.now()) {
                 message.error('Please Subscribe to Continue..')
                 router.push('/subscription')
                 // }
-            } else if (new Date(res?.data?.result?.client?.expireOn) >= Date.now()) {
+            } else if (Date.now() > expiryDateObject) {
                 message.error('Subscription expired, Kindly subscribe to continue')
                 router.push('/')
             }
@@ -83,7 +85,7 @@ export default function page() {
 
             <MobileHeader />
 
-            <Grid xs={10} sm={10} lg={11} container sx={{
+            {/* <Grid xs={10} sm={10} lg={11} container sx={{
                 justifyContent: 'center', alignItems: 'center', bgcolor: '',
                 mt: 12,
                 height: 46
@@ -102,7 +104,7 @@ export default function page() {
                     />
                 </Box>
 
-            </Grid>
+            </Grid> */}
             <Grid sx={{ display: 'flex', justifyContent: 'end', width: '100%' }}>
                 <CustomeDropDown options={languages} setSelectedLang={selectLang} lg='1' md='1' xs='2' bgcolor='whitesmoke' />
             </Grid>
