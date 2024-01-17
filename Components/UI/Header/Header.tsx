@@ -66,12 +66,14 @@ export default function Header() {
             path: '/testimonials'
         }
     ]
+    const expiryDateObject = new Date(fetchedData?.client?.expireOn);
+    expiryDateObject.setHours(23, 59, 59, 999);
 
     const videoTabOnClick = (data: { name: any; path: any; }) => {
         if (token) {
             if (data.name === 'Videos' && fetchedData?.client?.isActive === false) {
                 message.error('Please Subscribe to Continue..')
-            } else if (data.name === 'Videos' && new Date(fetchedData?.client?.expireOn) >= Date.now()) {
+            } else if (data.name === 'Videos' && Date.now() > expiryDateObject) {
                 message.error('Subscription expired.. Kindly renew subscription to continue')
             }
             else {
@@ -88,7 +90,7 @@ export default function Header() {
             }
         }
     }
-
+    console.log('444444444444444')
     return (
         <Grid container sx={{
             justifyContent: 'space-between', py: 1.5, alignItems: 'center',

@@ -34,6 +34,9 @@ export default function VideoSection() {
     const { fetchedData: videoData } = useQueryFetch('video')
     console.log(videoData, '+++++++++++++++++++')
 
+    const expiryDateObject = new Date(fetchedData?.client?.expireOn);
+    expiryDateObject.setHours(23, 59, 59, 999);
+
     // const { fetchedData: fetchedData } = useQueryFetchByHeaders('auth/profile')
 
     const data = useQueryFetchByHeaders('auth/profile').fetchedData
@@ -169,7 +172,7 @@ export default function VideoSection() {
                 </Grid>
 
             </Grid>
-            {data?.client?.isActive === false || !data || new Date(data?.client?.expireOn) >= Date.now() ?
+            {data?.client?.isActive === false || !data || Date.now() > expiryDateObject ?
                 <Grid container sx={{ mt: 5, justifyContent: 'center', alignItems: 'center' }}>
                     <Button letterSpacing={1.2} fontFamily="Oxygen"
                         display={data?.IsActive && 'none'}
