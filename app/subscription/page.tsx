@@ -17,7 +17,7 @@ import { message } from 'antd'
 
 export default function page() {
 
-    const [isOffer, setIsOffer] = useState(true)      // just make isOffer false to disable the offer or true to enable the offer
+    const [isOffer, setIsOffer] = useState(false)      // just make isOffer false to disable the offer or true to enable the offer
     const router = useRouter()
     const [price, setPrice] = useState(999)
 
@@ -252,30 +252,30 @@ export default function page() {
 
 
                         <Grid sx={{ backgroundColor: 'white', width: "100%" }}>
-                            {/* {isOffer ? */}
-                            <Grid
-                                onClick={() => { isOffer ? handleCheckout({ price: 999 }) : null }}
-                                sx={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: isOffer ? 'pointer' : null }}
-                            >
-                                {/* <label htmlFor="" style={{ transform: 'rotate(-30deg)', backgroundColor: 'greenyellow', fontSize: '12px', position: 'absolute', left: [{ xs: '10vw' }, { md: '40vw' }], color: 'goldenrod', fontWeight: '20px' }}>Grab Now!!</label> */}
-                                <label htmlFor="radio1" style={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: isOffer ? 'black' : 'slategray', textDecoration: isOffer ? null : 'line-through' }}>
-                                    Rs.999 per year
-                                </label>
-                            </Grid>
-                            {/* : null} */}
+                            {isOffer ?
+                                <Grid
+                                    onClick={() => { isOffer ? handleCheckout({ price: 999 }) : null }}
+                                    sx={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: isOffer ? 'pointer' : null }}
+                                >
+                                    {/* <label htmlFor="" style={{ transform: 'rotate(-30deg)', backgroundColor: 'greenyellow', fontSize: '12px', position: 'absolute', left: [{ xs: '10vw' }, { md: '40vw' }], color: 'goldenrod', fontWeight: '20px' }}>Grab Now!!</label> */}
+                                    <label htmlFor="radio1" style={{ backgroundColor: isOffer ? 'greenyellow' : 'lightgray', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: isOffer ? 'black' : 'slategray', textDecoration: isOffer ? null : 'line-through' }}>
+                                        Rs.999 per year
+                                    </label>
+                                </Grid>
+                                : null}
 
 
                             {/* 99 package is turned off */}
 
 
-                            {/* <Grid
+                            <Grid
                                 onClick={() => handleCheckout({ price: 99 })}
                                 sx={{ backgroundColor: '#FCCB06', justifyContent: 'space-around', width: '100%', display: 'flex', padding: '20px', mt: 1, cursor: 'pointer' }}
                             >
                                 <label htmlFor="radio2" style={{ backgroundColor: '#FCCB06', marginLeft: '10px', fontSize: '20px', fontWeight: '10px', color: 'black' }}>
                                     Rs.99 per month
                                 </label>
-                            </Grid> */}
+                            </Grid>
                         </Grid>
 
 

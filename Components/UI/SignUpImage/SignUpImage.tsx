@@ -5,7 +5,8 @@ export default function SignUpImage() {
     return (
         <Grid container md={4.5}
             component='img'
-            src='Assets/images/couple-training-together-gym 2.png'
+            src='Assets/images/aesthetics-training-diet-program.png'
+            // src='Assets/loginPageImg.png'
             sx={{
                 justifyContent: 'center',
                 alignItems: 'center',
